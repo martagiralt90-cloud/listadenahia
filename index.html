@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nahia · Lista de regalos</title>
+<meta name="description" content="Nahia llega el 27 de noviembre de 2026. Reserva un regalo para que nada llegue por duplicado.">
+<meta property="og:title" content="Nahia · Lista de regalos">
+<meta property="og:description" content="Nahia llega el 27 de noviembre de 2026. Reserva un regalo para que nada llegue por duplicado.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#FBFAF7;color:#1F2420;font-family:Karla,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#47614F;text-decoration:none}
+a:hover{color:#2F4436}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit}
+img{display:block}
+h1,h2{font-family:Newsreader,Georgia,serif}
+
+@keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fall{0%{opacity:0;transform:translate(0,-8vh) rotate(0deg)}12%{opacity:1}100%{opacity:0;transform:translate(var(--dx),105vh) rotate(var(--rot))}}
+@keyframes pulse{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:.9;transform:scale(1.35)}}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+/* ── Hero ── */
+.hero{position:relative;overflow:hidden;padding:clamp(46px,9vw,104px) 22px clamp(34px,5vw,56px);text-align:center;background:radial-gradient(120% 80% at 50% 0%,#F2F4EE 0%,#FBFAF7 62%)}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#7A8279;margin-bottom:clamp(18px,3vw,28px)}
+.dot{width:5px;height:5px;border-radius:50%;background:#8AA792;animation:pulse 2.6s ease-in-out infinite}
+.hero h1{font-weight:300;font-size:clamp(52px,17vw,148px);line-height:.92;letter-spacing:-.03em;margin:0 0 clamp(16px,2.5vw,26px);color:#1F2420}
+.hero-sub{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:clamp(19px,4.6vw,30px);line-height:1.5;font-weight:300;color:#4A524A;max-width:19ch;margin:0 auto clamp(24px,4vw,38px);text-wrap:pretty}
+.countdown{display:inline-flex;align-items:stretch;border:1px solid rgba(31,36,32,.13);border-radius:2px;background:#fff;overflow:hidden}
+.cd-cell{padding:14px 22px;text-align:center;min-width:92px}
+.cd-cell + .cd-cell{border-left:1px solid rgba(31,36,32,.1)}
+.cd-num{display:block;font-family:Newsreader,Georgia,serif;font-size:30px;line-height:1;color:#47614F}
+.cd-lbl{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#8A918A}
+.hero-cta{margin-top:clamp(26px,4vw,40px);display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-dark{display:inline-block;padding:13px 26px;border-radius:2px;background:#1F2420;color:#FBFAF7;font-size:13.5px;font-weight:500;letter-spacing:.02em;border:none;text-align:center}
+.btn-dark:hover{background:#47614F;color:#FBFAF7}
+.btn-ghost{padding:13px 22px;border-radius:2px;background:transparent;border:1px solid rgba(31,36,32,.18);color:#1F2420;font-size:13.5px;font-weight:500}
+.btn-ghost:hover{border-color:rgba(31,36,32,.4)}
+
+/* ── Note ── */
+.note-sec{max-width:1080px;margin:0 auto;padding:clamp(30px,5vw,64px) 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,4vw,52px);align-items:center}
+.eco-box{position:relative;aspect-ratio:4/5;max-width:420px;width:100%;justify-self:center;border:1px solid rgba(31,36,32,.1)}
+.note-kick{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8A918A;margin:0 0 16px}
+.note-lead{font-family:Newsreader,Georgia,serif;font-size:clamp(20px,3vw,27px);line-height:1.55;font-weight:300;color:#2A302A;margin:0 0 18px;text-wrap:pretty}
+.note-body{font-size:15px;line-height:1.8;color:#5C635C;margin:0 0 14px;max-width:46ch;text-wrap:pretty}
+.note-sign{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:18px;color:#47614F;margin:0}
+
+/* ── Steps ── */
+.steps{max-width:1080px;margin:0 auto;padding:0 22px clamp(30px,5vw,52px)}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:rgba(31,36,32,.12);border:1px solid rgba(31,36,32,.12)}
+.step{background:#fff;padding:24px 22px}
+.step-n{font-family:Newsreader,Georgia,serif;font-size:22px;color:#8AA792}
+.step-t{font-size:14px;font-weight:600;margin:8px 0 6px}
+.step-d{font-size:13px;line-height:1.7;color:#6E756E;margin:0}
+
+/* ── Highlights ── */
+#highlights{background:#F3F5EF;border-top:1px solid rgba(31,36,32,.08);border-bottom:1px solid rgba(31,36,32,.08);padding:clamp(34px,5vw,58px) 0}
+.hi-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+.hi-head h2{font-weight:300;font-size:clamp(24px,4vw,34px);margin:0;letter-spacing:-.01em}
+.hi-head p{font-size:12.5px;color:#7A8279;margin:0}
+.hi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.hi-card{background:#fff;border:1px solid rgba(31,36,32,.1);display:flex;flex-direction:column}
+.hi-img{position:relative;aspect-ratio:16/10;background:#EDEAE2;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hi-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hi-img .ph{position:relative;z-index:1}
+.hi-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1}
+.hi-n{font-size:14.5px;font-weight:600;margin:0 0 6px;line-height:1.35}
+.hi-note{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:15px;line-height:1.6;color:#5C635C;margin:0 0 14px}
+.hi-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.hi-p{font-size:13px;color:#7A8279}
+.btn-mini-dark{padding:9px 16px;border:none;border-radius:2px;background:#1F2420;color:#FBFAF7;font-size:12.5px;font-weight:500}
+.btn-mini-dark:hover{background:#47614F}
+
+/* ── Lista header ── */
+.lista-head{max-width:1080px;margin:0 auto;padding:clamp(34px,5vw,60px) 22px 0;scroll-margin-top:70px}
+.lista-head h2{font-weight:300;font-size:clamp(26px,5vw,40px);margin:0 0 10px;letter-spacing:-.015em}
+#progress-line{font-size:14px;color:#6E756E;margin:0 0 20px}
+.prog-track{height:3px;background:rgba(31,36,32,.09);margin-bottom:6px}
+#progress-fill{height:100%;background:#8AA792;transition:width .6s cubic-bezier(.2,.7,.2,1)}
+#progress-pct{font-size:11.5px;color:#9AA199;margin:0 0 4px;letter-spacing:.02em}
+
+/* ── Filter bar ── */
+.filterbar{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(31,36,32,.09);margin-top:18px}
+.filterbar .wrap{display:flex;flex-direction:column;gap:10px;padding-top:12px;padding-bottom:12px}
+.chip-scroll{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.chip-scroll::-webkit-scrollbar{display:none}
+.chip{flex:none;padding:7px 15px;border-radius:2px;font-size:12.5px;font-weight:500;white-space:nowrap;border:1px solid rgba(31,36,32,.14);background:#fff;color:#5C635C}
+.chip.active{background:#1F2420;color:#FBFAF7;border-color:#1F2420}
+.range-label{display:flex;align-items:center;gap:9px;font-size:12px;color:#6E756E}
+.range-label span{white-space:nowrap}
+.range-label input{width:110px;accent-color:#47614F}
+
+/* ── Grid + cards ── */
+.grid{max-width:1080px;margin:0 auto;padding:20px 22px clamp(50px,8vw,90px);display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:clamp(10px,1.6vw,18px)}
+.card{background:#fff;border:1px solid rgba(31,36,32,.1);display:flex;flex-direction:column;transition:box-shadow .25s,transform .25s}
+.card:hover{box-shadow:0 10px 34px rgba(31,36,32,.09);transform:translateY(-3px)}
+.card.taken:hover{box-shadow:none;transform:none}
+.card-img{position:relative;aspect-ratio:1/1;background:#EFECE4;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.card-img>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card-img .ph{position:relative;z-index:1}
+.ph{color:#C4BEB0;display:flex}
+.ph svg{width:34px;height:34px;display:block}
+.card-img .ph svg{width:30px;height:30px}
+.badge{position:absolute;top:0;left:0;background:#1F2420;color:#FBFAF7;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;padding:5px 9px;z-index:2}
+.card-body{padding:13px 13px 14px;display:flex;flex-direction:column;flex:1}
+.card-cat{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#A7ADA5;margin:0 0 5px}
+.card-name{font-size:13.5px;font-weight:600;line-height:1.35;margin:0 0 4px}
+.card-price{font-size:12.5px;color:#7A8279;margin:0 0 6px}
+.card-size{display:inline-block;align-self:flex-start;font-size:10.5px;color:#5C635C;background:#F1EFE8;border:1px solid rgba(31,36,32,.08);padding:3px 7px;margin:0 0 10px}
+.grp{margin:0 0 12px}
+.grp-bar{height:2px;background:rgba(31,36,32,.1)}
+.grp-fill{height:100%;background:#B4796A;transition:width .5s}
+.grp-line{font-size:11px;color:#8A918A;margin:6px 0 0}
+.card-actions{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.btn-shop{text-align:center;padding:8px;border:1px solid rgba(31,36,32,.14);border-radius:2px;font-size:11.5px;color:#5C635C;background:#FCFBF8}
+.btn-shop:hover{border-color:#47614F;color:#47614F}
+.btn-reserve{padding:9px;border:none;border-radius:2px;background:#1F2420;color:#FBFAF7;font-size:12.5px;font-weight:500;width:100%}
+.btn-reserve:hover{background:#47614F}
+.taken-badge{text-align:center;padding:8px;border-radius:2px;background:#F0F3ED;color:#47614F;font-size:11.5px;font-weight:600;border:1px solid #D6E0D4}
+.empty{grid-column:1/-1;padding:clamp(40px,7vw,72px) 20px;text-align:center;border:1px solid rgba(31,36,32,.1);background:#fff}
+.empty-h{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:clamp(19px,3.4vw,25px);font-weight:300;color:#4A524A;margin:0 0 8px}
+.empty-p{font-size:13.5px;color:#7A8279;margin:0 0 20px}
+
+/* ── Image slot ── */
+.img-slot{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:8px;text-align:center;background:#EDEAE2;background-size:cover;background-position:center;cursor:pointer}
+.img-slot.drag{outline:2px dashed #8AA792;outline-offset:-4px}
+.img-slot .slot-hint{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#9AA199;line-height:1.4}
+.img-slot.filled .ph,.img-slot.filled .slot-hint{display:none}
+
+/* ── Footer ── */
+footer.foot{border-top:1px solid rgba(31,36,32,.09);padding:34px 22px 44px;text-align:center}
+.foot-lead{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:19px;color:#47614F;margin:0 0 8px}
+.foot-sub{font-size:12px;color:#A7ADA5;margin:0}
+
+/* ── Modal (bottom sheet) ── */
+.backdrop{position:fixed;inset:0;z-index:60;background:rgba(23,26,23,.42);backdrop-filter:blur(5px);display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:#FBFAF7;width:100%;max-width:420px;padding:26px 22px 28px;animation:riseIn .28s cubic-bezier(.2,.8,.2,1);max-height:92vh;overflow-y:auto}
+.m-kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8A918A;margin:0 0 12px}
+.m-title{font-family:Newsreader,Georgia,serif;font-size:25px;font-weight:300;line-height:1.3;margin:0 0 6px}
+.m-price{font-size:13px;color:#7A8279;margin:0 0 20px}
+.m-h{font-size:14px;font-weight:600;margin:0 0 4px}
+.m-h.sm{font-size:12.5px}
+.m-p{font-size:13px;line-height:1.7;color:#6E756E;margin:0 0 16px}
+.m-fine{font-size:11.5px;line-height:1.6;color:#9AA199;margin:0 0 12px}
+.m-err{font-size:12.5px;color:#B4796A;margin:0 0 12px}
+.opt-col{display:grid;gap:8px;margin-bottom:18px}
+.opt-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.opt{padding:14px 12px;text-align:left;border-radius:2px;border:1px solid rgba(31,36,32,.14);background:#fff;display:flex;flex-direction:column;gap:3px}
+.opt.sel{border-color:#8AA792;background:#F0F3ED}
+.opt-t{font-size:12.5px;font-weight:600}
+.opt-s{font-size:11px;color:#7A8279;line-height:1.45}
+.m-sub-block{margin-bottom:16px}
+.m-sub-block.bordered{border-top:1px solid rgba(31,36,32,.1);padding-top:16px}
+.chip-row{display:flex;gap:6px;flex-wrap:wrap}
+.mini{padding:8px 14px;border-radius:2px;font-size:12.5px;font-weight:500;border:1px solid rgba(31,36,32,.14);background:#fff;color:#5C635C}
+.mini.sel{background:#1F2420;color:#FBFAF7;border-color:#1F2420}
+.extra-list{display:grid;gap:6px}
+.extra{display:flex;align-items:center;gap:10px;text-align:left;padding:10px 11px;border-radius:2px;border:1px solid rgba(31,36,32,.14);background:#fff}
+.extra.sel{border-color:#8AA792;background:#F0F3ED}
+.extra .box{width:16px;height:16px;flex:none;border:1px solid rgba(31,36,32,.3);background:#fff;color:#FBFAF7;font-size:11px;line-height:14px;text-align:center}
+.extra.sel .box{background:#47614F;border-color:#47614F}
+.extra .ex-n{flex:1;font-size:12.5px;line-height:1.35}
+.extra .ex-p{font-size:11.5px;color:#7A8279;white-space:nowrap}
+.f-text{width:100%;padding:12px 13px;border:1px solid rgba(31,36,32,.16);border-radius:2px;background:#fff;font-size:13px;margin-bottom:9px}
+.f-text.err{border-color:#B4796A}
+.f-area{width:100%;padding:12px 13px;border:1px solid rgba(31,36,32,.16);border-radius:2px;background:#fff;font-size:14px;font-family:Newsreader,Georgia,serif;line-height:1.7;resize:vertical;margin-bottom:16px}
+.m-btns{display:flex;gap:8px}
+.btn-line{padding:13px;border:1px solid rgba(31,36,32,.16);border-radius:2px;background:transparent;font-size:13px;color:#6E756E}
+.btn-line.f1{flex:1}
+.btn-dark.f2{flex:2}
+.pc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:14px}
+.pc{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font-size:20px;border-radius:2px;border:1.5px solid rgba(31,36,32,.12);background:#eee}
+.pc.sel{border-color:#47614F}
+.postal-card{border:1px solid rgba(31,36,32,.14);background:#fff;padding:22px 20px;margin-bottom:16px}
+.postal-head{display:flex;align-items:center;gap:10px;margin:0 0 14px}
+.postal-icon{width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;font-size:22px}
+.postal-kick{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#B4796A;margin:0}
+.postal-text{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:17px;line-height:1.7;color:#2A302A;margin:0 0 14px;text-wrap:pretty}
+.postal-sign{font-family:Newsreader,Georgia,serif;font-size:15px;color:#47614F;margin:0;text-align:right}
+
+/* ── Toast + confetti ── */
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:22px;z-index:80;background:#1F2420;color:#FBFAF7;padding:13px 20px;border-radius:2px;font-size:13px;box-shadow:0 12px 40px rgba(31,36,32,.22);animation:riseIn .3s ease;max-width:calc(100% - 32px);text-align:center}
+.confetti{position:fixed;inset:0;z-index:90;pointer-events:none;overflow:hidden}
+.confetti span{position:absolute;top:0;display:block}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+"use strict";
+
+/* ── Config (from Lista Nahia.dc.html data-props) ── */
+var WA_NUMBER = "0034689623459";
+var CONFETTI  = true;
+var KEY       = "nahia-lista-v5";
+var DUE       = new Date(2026, 10, 27);   // 27 nov 2026
+var SHARE_MIN = 200;
+
+/* URL de la app web de Google Apps Script (termina en /exec).
+   Vacío = modo sin conexión: las reservas se guardan solo en este navegador.
+   Con URL: las reservas se comparten en vivo entre todos los invitados
+   y se apuntan en la hoja de Google (ver apps-script/Codigo.gs y DEPLOY.md). */
+var SHEET_URL = "";
+
+/* Neutral placeholder shown when a product has no photo (replaces emojis) */
+var PH = '<span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9.5" r="1.6"></circle><path d="M21 16l-5-5L7 20"></path></svg></span>';
+
+/* ── Data (from products.js) ── */
+var CAT_LABELS = {
+  sueno: "Sueño", movil: "Movilidad", higiene: "Higiene",
+  lact: "Lactancia", ropa: "Ropa", alim: "Alimentación", juego: "Juego"
+};
+
+var CATS = [
+  { k: "all", l: "Todo" },
+  { k: "sueno", l: "Sueño" },
+  { k: "movil", l: "Movilidad" },
+  { k: "ropa", l: "Ropa" },
+  { k: "higiene", l: "Higiene" },
+  { k: "lact", l: "Lactancia" },
+  { k: "alim", l: "Alimentación" },
+  { k: "juego", l: "Juego" }
+];
+
+var STORES = {
+  "bitti.es": "Bitti", "ecuskids.com": "Ecus Kids", "little-dutch.com": "Little Dutch",
+  "lilulila.com": "Lilulila", "es.joiebaby.com": "Joie", "muuvostrollers.com": "Muuvo",
+  "flybaby.berlin": "Flybaby", "www.babyshower.es": "Baby Shower", "zipsterbaby.es": "Zipster",
+  "www.mimuselina.com": "Mimuselina", "www.petit-bateau.es": "Petit Bateau",
+  "northbaby.es": "Northbaby", "www.ok-living.es": "OK Living", "twistshake.com": "Twistshake",
+  "es.momcozy.com": "Momcozy", "www.minikoioi.com": "Minikoioi",
+  "rugeditorial.com": "Rug Editorial", "lovevery.eu": "Lovevery", "myfunzy.com": "Funzy",
+  "donebydeer.com": "Done by Deer", "www2.hm.com": "H&M", "www.vertbaudet.es": "Vertbaudet",
+  "www.purenature.es": "PureNature", "oliandcarol.com": "Oli&Carol", "www.amazon.es": "Amazon"
+};
+
+var POSTCARDS = [
+  { icon: "🌿", name: "Hojas", bg: "#E7EFE6" },
+  { icon: "🌙", name: "Luna", bg: "#E4E8F0" },
+  { icon: "⭐", name: "Estrella", bg: "#F3EEDD" },
+  { icon: "🐋", name: "Ballena", bg: "#E2ECF1" },
+  { icon: "🐰", name: "Conejo", bg: "#F2E8E6" },
+  { icon: "🦁", name: "León", bg: "#F4EBD9" },
+  { icon: "☁️", name: "Nube", bg: "#EDEFF1" },
+  { icon: "🌊", name: "Mar", bg: "#E1EAEE" },
+  { icon: "🎈", name: "Globo", bg: "#F3E5E5" },
+  { icon: "🌸", name: "Flor", bg: "#F5E8EC" },
+  { icon: "🍃", name: "Brisa", bg: "#E9F0E7" },
+  { icon: "🧸", name: "Osito", bg: "#EFE7DC" }
+];
+
+var PRODUCTS = [
+  { id:"cuna", c:"sueno", n:"Cuna Doco 120×60 · Cotinfant", p:"384 €", price:384, url:"https://www.bitti.es/es/cunas-colecho-y-moises-c42/cuna-colecho-doco-120x60-de-cotinfant-8214-p8214", img:"https://www.bitti.es/productes/356-cunadocosleeping120x60_.jpg", size:"120 × 60 cm", t:true },
+  { id:"colchon", c:"sueno", n:"Colchón antiahogo Care Ultimate · Ecus Kids", p:"349 €", price:349, url:"https://ecuskids.com/products/colchon-cuna-care-ultimate", img:"https://ecuskids.com/cdn/shop/files/Care_Ultimate.jpg?v=1772454562&width=1200", size:"120 × 60 cm" },
+  { id:"protector", c:"sueno", n:"Protector colchón Care 3D 120×60 · Ecus Kids", p:"39 €", price:39, url:"https://ecuskids.com/products/protector-care-3d?variant=55039872794997", img:"https://ecuskids.com/cdn/shop/files/protector_care_3d_kids_b94570aa-858b-4620-8114-6cfba8014691.jpg?v=1748003715&width=1200", size:"120 × 60 cm (cuna)" },
+  { id:"saco-ld", c:"sueno", n:"Saco invierno 90 cm Forest Friends · Little Dutch", p:"44,95 €", price:44.95, url:"https://little-dutch.com/en-eu/products/sleeping-bag-winter-90-cm-green-size-90-cm-forest-friends", img:"https://little-dutch.com/cdn/shop/files/0018786.jpg?v=1774995858", size:"Talla 90 cm · 6-18 meses" },
+  { id:"saco-lila", c:"sueno", n:"Saco bambú Baby Lion · Lilulila", p:"59,90 €", price:59.9, url:"https://lilulila.com/es/products/baby-lion-bamboo-sleeping-bag", img:"https://cdn.shopify.com/s/files/1/0652/1523/4260/files/250.jpg?v=1725535670", size:"Talla 0-6 meses · TOG 2.5", note:"Para sus primeras noches en casa.", hi:true },
+  { id:"silla", c:"movil", n:"Silla de coche Joie i-Spin 360", p:"339,95 €", price:339.95, url:"https://es.joiebaby.com/product/i-spin-360/", img:"https://mimabebes.es/56394-large_default/silla-de-coche-giratoria-joie-i-spin-360-40-105-cm.jpg", size:"i-Size R129 · 40-105 cm", t:true },
+  { id:"carrito", c:"movil", n:"Carrito Muuvo Quick SE2 · Bbes & Co", p:"799 €", price:799, url:"https://www.bbes.es/products/carro-muuvo-quick-se2", img:"https://www.bbes.es/cdn/shop/products/Quick-SE2-Chromium-Black-Duo.jpg?v=1753765664&width=800", size:"Duo 2 en 1 · 0-22 kg", t:true },
+  { id:"portabebe", c:"movil", n:"Portabebé · Flybaby", p:"249,95 €", price:249.95, url:"https://flybaby.berlin/en-es/products/flybaby-carrier", img:"https://flybaby.berlin/cdn/shop/files/Flybaby-Babytrage-Terra-Frontansicht-variant_50470894567764.jpg?v=1756915091&width=600", size:"Nacimiento-15 kg · cinturón 66-127 cm" },
+  { id:"capazo", c:"movil", n:"Capazo vestido Sage Powder · Babyshower", p:"180 €", price:180, url:"https://www.babyshower.es/es/capazo-vestido-sage-powder-2135.html", img:"https://www.babyshower.es/5298-thickbox_default/capazo-vestido-sage-powder.jpg", size:"Solo vestiduras" },
+  { id:"bolso", c:"movil", n:"Bolso cambiador Quilted · Done by Deer", p:"89,95 €", price:89.95, url:"https://donebydeer.com/en-es/products/quilted-changing-bag-black", img:"https://donebydeer.com/cdn/shop/files/changingbagblackk1.jpg?v=1782829886&width=1200", size:"Color negro" },
+  { id:"trio", c:"ropa", n:"Trío Perfecto On the Farm · Zipster", p:"79,90 €", price:79.9, url:"https://zipsterbaby.es/products/el-trio-perfecto-en-la-granja", img:"https://zipsterbaby.es/cdn/shop/files/79_0b4ad41d-9b73-4fd6-966d-9c81b08b4c8c.png?v=1785252822", size:"Talla 1 · 0-3 meses", note:"Tres piezas para los primeros días, con cremallera.", hi:true },
+  { id:"minimax-mint", c:"ropa", n:"Set muselinas Minimax Mint Breeze · Babyshower", p:"23,92 €", price:23.92, url:"https://www.babyshower.es/es/set-muselinas-minimax-mint-breeze-8587.html", img:"https://www.babyshower.es/30586-thickbox_default/set-muselinas-minimax-mint-breeze.jpg", size:"Set 2 piezas · 140×100 y 45×45 cm" },
+  { id:"bodis-ballenas", c:"ropa", n:"Bodis ballenas (lote de 3) · Petit Bateau", p:"27 €", price:27, url:"https://www.petit-bateau.es/bebe/ropa-de-noche-y-ropa-interior/body/lote-de-bodis-cruzados-de-manga-larga-para-bebe-unisex-de-algodon-con-estampado-de-ballenas-variante-1/A0DXG00.html", img:"https://www.petit-bateau.es/on/demandware.static/-/Sites-PB_master/default/dw8a8430c9/PB/A0DXG00F1.jpg", size:"Pedir talla 1 mes (0-1m) y 3 meses (1-3m)", note:"De las cosas que más se usan el primer mes.", hi:true },
+  { id:"bodis-corazones", c:"ropa", n:"Bodis corazones (lote de 3) · Petit Bateau", p:"27 €", price:27, url:"https://www.petit-bateau.es/bebe/ropa-de-noche-y-ropa-interior/body/lote-de-bodis-cruzados-de-manga-larga-para-bebe-unisex-en-algodon-con-estampado-de-corazones-variante-1/A00AZ00.html", img:"https://www.petit-bateau.es/on/demandware.static/-/Sites-PB_master/default/dwf55874c9/PB/A00AZ00F1.jpg", size:"Pedir talla 1 mes (0-1m) y 3 meses (1-3m)" },
+  { id:"minimax", c:"ropa", n:"Set muselinas Minimax Cloud Powder · Babyshower", p:"23,92 €", price:23.92, url:"https://www.babyshower.es/es/set-muselinas-minimax-cloud-powder-4664.html", img:"https://www.babyshower.es/15612-thickbox_default/set-muselinas-minimax-cloud-powder.jpg", size:"Set 2 piezas · 140×100 y 45×45 cm" },
+  { id:"arrullo", c:"ropa", n:"Arrullo Bunny Forest Powder · Babyshower", p:"21,95 €", price:21.95, url:"https://www.babyshower.es/es/arrullo-bunny-forest-powder-5287.html", img:"https://www.babyshower.es/17599-thickbox_default/arrullo-bunny-forest-powder.jpg", size:"78 × 80 cm" },
+  { id:"pijamas", c:"ropa", n:"Peleles algodón orgánico · Northbaby", p:"35,95 €", price:35.95, url:"https://northbaby.es/producto/pelele-bebe-algodon-organico-cloud/", img:"https://northbaby.es/wp-content/uploads/northbaby-pijama-bebe-comodo-organico-cloud-502gr-4-800x1000.jpg", size:"0-1m ×3 + 1-3m ×6 (ya comprados)", t:true },
+  { id:"hm-muselina", c:"ropa", n:"Conjunto 2 piezas muselina algodón · H&M", p:"≈ 20 €", price:20, url:"https://www2.hm.com/es_es/productpage.1354415002.html", img:"https://image.hm.com/assets/hm/03/05/03055d67f77071f5ce9ac01705d149af68871927.jpg?imwidth=1260", size:"Talla 50 · rosa melocotón" },
+  { id:"hm-punto", c:"ropa", n:"Conjunto punto texturizado 2 piezas · H&M", p:"≈ 25 €", price:25, url:"https://www2.hm.com/es_es/productpage.1341828001.html", img:"https://image.hm.com/assets/hm/8f/2f/8f2f2effd7951ee83376081a1100702febd55f3c.jpg?imwidth=1260", size:"Talla 56 · beige claro" },
+  { id:"hm-bodies", c:"ropa", n:"Pack 2 bodies extensibles · H&M", p:"≈ 13 €", price:13, url:"https://www2.hm.com/es_es/productpage.1261599010.html", img:"https://image.hm.com/assets/hm/82/8b/828bc519683a9c05e8f4a6ac7f3eb24ecc3bd81c.jpg?imwidth=1260", size:"Talla 56 · turquesa/pájaros" },
+  { id:"hm-leggings", c:"ropa", n:"Pack 2 leggings extensibles · H&M", p:"≈ 13 €", price:13, url:"https://www2.hm.com/es_es/productpage.1248709011.html", img:"https://image.hm.com/assets/hm/30/6a/306a8f1b7a4baef491d8e0b7304c68b4a6325200.jpg?imwidth=1260", size:"Talla 56 · turquesa/pájaros" },
+  { id:"hm-pelele", c:"ropa", n:"Pelele algodón gofrado · H&M", p:"≈ 15 €", price:15, url:"https://www2.hm.com/es_es/productpage.1266882009.html", img:"https://image.hm.com/assets/hm/b8/93/b893024c486bac223790708dad8ebbebbe376abd.jpg?imwidth=1260", size:"Talla 56 · violeta claro" },
+  { id:"baberos-dbd", c:"ropa", n:"Baberos 2-pack Celebration Powder · Done by Deer", p:"12,95 €", price:12.95, url:"https://donebydeer.com/en-es/products/burp-cloth-2-pack-celebration-powder", img:"https://donebydeer.com/cdn/shop/files/3063101.jpg?v=1768917535&width=1200", size:"Pack de 2 · talla única" },
+  { id:"comoda", c:"higiene", n:"Cómoda cambiador Vitalispa Malia Oak · OK Living", p:"≈ 260 €", price:260, url:"https://www.ok-living.es/", img:"", size:"133 × 98 cm" },
+  { id:"cambiador", c:"higiene", n:"Pack baño + cambiador de lujo Twistshake Mocha", p:"189,99 €", price:189.99, url:"https://twistshake.com/es/p/luxury-changing-mat-mocha", img:"https://products.twistshake.com/images/2578_cb08b96750-mocha_lux_chan-original.jpg", size:"Color Mocha · 0-4 años", t:true },
+  { id:"banera", c:"higiene", n:"Bañera plegable Grey · Twistshake", p:"41,99 €", price:41.99, url:"https://twistshake.com/es/p/bathtub-grey", img:"https://products.twistshake.com/images/1289_0b57d0bc10-bathtub-original.jpg", size:"79,5 × 47,5 cm · 0m+" },
+  { id:"capa", c:"higiene", n:"Capa de baño Bunny Feel Blush · Babyshower", p:"30,60 €", price:30.6, url:"https://www.babyshower.es/es/capa-de-bano-bunny-feel-blush-7272.html", img:"https://www.babyshower.es/25832-thickbox_default/capa-de-bano-bunny-feel-blush.jpg", size:"75 × 75 cm · 0-18 meses" },
+  { id:"capa-vb", c:"higiene", n:"Capa de baño Pommes d'amour · Vertbaudet", p:"22,99 €", price:22.99, url:"https://www.vertbaudet.es/capa-de-bano-para-bebe-pommes-d-amour-rosa-medio-liso-con-motivos.htm?ProductId=704040157&FiltreCouleur=6650", img:"https://media.vertbaudet.es/Pictures/vertbaudet/167036/capa-de-bano-para-bebe-pommes-damour.jpg", size:"80×80 o 100×100 cm" },
+  { id:"lote-vujo", c:"higiene", n:"Lote cuidado bebé ecológico · Vujo / PureNature", p:"53,20 €", price:53.2, url:"https://www.purenature.es/lote-bebe-vujo", img:"https://www.purenature.es/media/image/d7/7f/70/21856_01.jpg", size:"6 productos" },
+  { id:"sacaleches", c:"lact", n:"Sacaleches manos libres Momcozy Mobile Style M6", p:"259,99 €", price:259.99, url:"https://es.momcozy.com/products/momcozy-mobile-style-hands-free-breast-pump-m6-1-0", img:"https://es.momcozy.com/cdn/shop/files/01_56489eac-5396-4685-aacc-3c6c14c39930.jpg?v=1777304443&width=800" },
+  { id:"calentador", c:"lact", n:"Calentador + enfriador portátil · Momcozy", p:"169,99 €", price:169.99, url:"https://es.momcozy.com/products/portable-milk-warmer-22oz-cooler-on-the-go-bundle", img:"https://es.momcozy.com/cdn/shop/files/8c906ea958788e1ec1124bcfa860ce37_460630a2-b0e7-47b9-a7c1-1f43e2368c10.jpg?v=1777304857" },
+  { id:"babero-mint", c:"alim", n:"Babero Simply Lullaby Mint · Babyshower", p:"14,50 €", price:14.5, url:"https://www.babyshower.es/es/babero-simply-lullaby-mint-9572.html", img:"https://www.babyshower.es/35631-thickbox_default/babero-simply-lullaby-mint.jpg", size:"22 × 18 cm" },
+  { id:"babero", c:"alim", n:"Babero Star Cloud Powder · Babyshower", p:"14,50 €", price:14.5, url:"https://www.babyshower.es/es/babero-star-cloud-powder-3673.html", img:"https://www.babyshower.es/9699-thickbox_default/babero-star-cloud-powder.jpg", size:"22 × 18 cm · 0-18 meses" },
+  { id:"blw", c:"alim", n:"BLW Set III silicona · Minikoioi", p:"≈ 42 €", price:42, url:"https://www.minikoioi.com/product-page/blw-set-iii-silicone-feeding-set-bib-plate-bowl-cup-spoon-fork-2", img:"https://static.wixstatic.com/media/a67799_bc6c94062ecf4586a084c2e2baf95d19~mv2.png/v1/fit/w_500,h_500,q_90/file.png", size:"Bib + plato + bol + vaso + cuchara + tenedor" },
+  { id:"alfombra", c:"juego", n:"Alfombra Jamie Ocean Adventure · Rug Editorial", p:"Ver precio en la web", price:851, url:"https://rugeditorial.com/es/products/jamie-alfombra-infantil-ocean-adventure", img:"https://rugeditorial.com/cdn/shop/files/B-133-150x215-BEIGE_ec5bba23-b01a-4287-a6aa-6b78c312d680.jpg?v=1769078588&width=600", size:"150 × 215 cm" },
+  { id:"gym", c:"juego", n:"Gimnasio de actividades · Lovevery Play Gym", p:"155 €", price:155, url:"https://lovevery.eu/products/the-play-gym", img:"", size:"0+ meses · 5 zonas" },
+  { id:"sofa", c:"juego", n:"Play Sofa House Bundle · Funzy", p:"549,90 €", price:549.9, url:"https://myfunzy.com/products/spielsofa-haus-bundle", img:"https://myfunzy.com/cdn/shop/files/funzy-productphoto-spielsofa-bundle-haus-creme-beige_1_DEAT.webp?v=1784023512", size:"Corduroy Cream Beige" },
+  { id:"alfombra-vb", c:"juego", n:"Alfombra de actividades Disfruta de la Vida · Vertbaudet", p:"≈ 60 €", price:60, url:"https://www.vertbaudet.es/alfombra-de-actividades-disfruta-de-la-vida-beige.htm?ProductId=341004136&FiltreCouleur=0302", img:"https://media.vertbaudet.es/Pictures/vertbaudet/412845/alfombra-de-actividades-disfruta-de-la-vida.jpg", size:"Beige multicolor" },
+  { id:"tinyfarm", c:"juego", n:"Tiny Farm Gift Bundle (recién nacido) · Done by Deer", p:"76,80 €", price:76.8, url:"https://donebydeer.com/en-es/collections/activity-toys-for-babies-and-toddlers/products/tiny-farm-gift-bundle-0-months", img:"https://donebydeer.com/cdn/shop/files/tinyfarmgiftbundle0_months_b2e06752-338d-434a-be03-5b922f1e935a.jpg?v=1783412584&width=1000", size:"0 meses+" },
+  { id:"olicarol", c:"juego", n:"Pack Regalo Recién Nacido Fresh Baby · Oli&Carol", p:"55 €", price:55, url:"https://oliandcarol.com/es/products/newborn-fesh-baby-gift-set", img:"https://oliandcarol.com/cdn/shop/files/1.NEWBORNFRESHBABYSET.jpg?v=1774943974&width=1200", size:"3 piezas", note:"Sus primeros mordedores, de caucho natural.", hi:true },
+  { id:"lavabiberones", c:"higiene", n:"Lavabiberones + esterilizador KleanPal Pro · Momcozy", p:"369,99 €", price:369.99, url:"https://es.momcozy.com/products/momcozy-kleanpal-pro-baby-bottle-washer", img:"https://es.momcozy.com/cdn/shop/files/Momcozy_Baby_Bottle_Washer_1.webp?v=1777304628&width=1200", size:"3 en 1" }
+];
+
+/* ── State ── */
+var state = {
+  cat: "all", maxPrice: 1200,
+  reserved: {}, contrib: {},
+  modal: null, mode: "envio", amount: 50, giver: "", note: "",
+  shared: false, extras: {}, card: 0, step: "modo", error: "", lastMsg: ""
+};
+
+/* ── Helpers ── */
+function esc(s){
+  return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+  });
+}
+function eur(v){ return v.toLocaleString("es-ES", { maximumFractionDigits: 0 }) + " €"; }
+function canShare(p){ return p.price > SHARE_MIN; }
+function isTaken(p){
+  if (state.reserved[p.id]) return true;
+  if (canShare(p)) return (state.contrib[p.id] || 0) >= p.price;
+  return false;
+}
+function store(p){
+  try {
+    var h = new URL(p.url).hostname;
+    return STORES[h] || h.replace("www.", "");
+  } catch (e) { return ""; }
+}
+function remainOf(m){
+  return m && canShare(m) ? Math.max(0, m.price - (state.contrib[m.id] || 0)) : 0;
+}
+function $(id){ return document.getElementById(id); }
+
+/* ── Persistence ── */
+function loadState(){
+  var seed = {};
+  PRODUCTS.forEach(function(p){ if (p.t) seed[p.id] = { mode: "envio" }; });
+  var stored = {};
+  try {
+    var raw = localStorage.getItem(KEY);
+    if (raw) stored = JSON.parse(raw) || {};
+  } catch (e) {}
+  state.reserved = Object.assign(seed, stored.reserved || {});
+  state.contrib = stored.contrib || {};
+}
+function persist(){
+  try {
+    localStorage.setItem(KEY, JSON.stringify({ reserved: state.reserved, contrib: state.contrib }));
+  } catch (e) {}
+}
+
+/* ── Sincronización con Google Sheet (opcional) ── */
+function syncPull(){
+  if (!SHEET_URL) return;
+  fetch(SHEET_URL, { method: "GET" })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if (!data || typeof data !== "object") return;
+      var seed = {};
+      PRODUCTS.forEach(function(p){ if (p.t) seed[p.id] = { mode: "envio" }; });
+      state.reserved = Object.assign(seed, data.reserved || {});
+      state.contrib = data.contrib || {};
+      persist();
+      renderGrid(); renderProgress(); renderHighlights();
+      if (state.modal) renderModal();
+    })
+    .catch(function(){ /* sin conexión: seguimos con lo local */ });
+}
+function syncPush(payload){
+  if (!SHEET_URL) return;
+  fetch(SHEET_URL, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" }, // evita el preflight CORS
+    body: JSON.stringify(payload)
+  })
+  .then(function(){ syncPull(); })
+  .catch(function(){ /* se reintenta al recargar */ });
+}
+
+/* ── Shell ── */
+function shellHTML(){
+  return [
+    '<section class="hero">',
+      '<div class="eyebrow"><span class="dot"></span>Lista de nacimiento</div>',
+      '<h1>Nahia</h1>',
+      '<p class="hero-sub">Llega el 27 de noviembre de 2026</p>',
+      '<div class="countdown">',
+        '<div class="cd-cell"><span class="cd-num" id="cd-months">–</span><span class="cd-lbl">meses</span></div>',
+        '<div class="cd-cell"><span class="cd-num" id="cd-weeks">–</span><span class="cd-lbl">semanas</span></div>',
+        '<div class="cd-cell"><span class="cd-num" id="cd-days">–</span><span class="cd-lbl">días</span></div>',
+      '</div>',
+      '<div class="hero-cta">',
+        '<a class="btn-dark" href="#lista">Ver la lista</a>',
+        '<button class="btn-ghost" data-act="share">Compartir la lista</button>',
+      '</div>',
+    '</section>',
+
+    '<section class="note-sec">',
+      '<div class="eco-box"><div class="img-slot" data-sid="nahia-eco">' + PH + '<span class="slot-hint">Ecografía de Nahia<br>arrastra o toca para subir</span></div></div>',
+      '<div>',
+        '<p class="note-kick">Una nota nuestra</p>',
+        '<p class="note-lead">Llevamos meses imaginándola: cómo será su cara, a quién se parecerá, el ruido que hará la casa cuando llegue.</p>',
+        '<p class="note-body">Esta lista es solo para que nada llegue por duplicado y para que nadie se complique. Reserva lo que te apetezca, o aporta una parte de algo grande — todo se agradece igual, y lo que más nos hace ilusión es que estéis.</p>',
+        '<p class="note-sign">Marta y Rubén</p>',
+      '</div>',
+    '</section>',
+
+    '<section class="steps"><div class="steps-grid">',
+      '<div class="step"><span class="step-n">01</span><p class="step-t">Elige y reserva</p><p class="step-d">Solo te pedimos tu nombre, para saber de quién es. Para el resto de invitados únicamente se verá que ya está cogido.</p></div>',
+      '<div class="step"><span class="step-n">02</span><p class="step-t">Lo compras tú o nos haces Bizum</p><p class="step-d">Si lo compras tú, te damos la dirección de envío. Si prefieres Bizum, lo gestionamos nosotros.</p></div>',
+      '<div class="step"><span class="step-n">03</span><p class="step-t">Los grandes, entre varios</p><p class="step-d">Todo lo que pasa de 200 € se puede compartir entre varios: aportas la parte que quieras y se va sumando.</p></div>',
+    '</div></section>',
+
+    '<section id="highlights" hidden></section>',
+
+    '<section class="lista-head" id="lista">',
+      '<h2>La lista</h2>',
+      '<p id="progress-line">Cargando la lista…</p>',
+      '<div class="prog-track"><div id="progress-fill" style="width:0%"></div></div>',
+      '<p id="progress-pct">0% completada</p>',
+    '</section>',
+
+    '<div class="filterbar"><div class="wrap">',
+      '<div class="chip-scroll" id="chips">',
+        CATS.map(function(c){ return '<button class="chip" data-act="cat" data-k="' + c.k + '">' + esc(c.l) + '</button>'; }).join(''),
+      '</div>',
+      '<label class="range-label"><span id="max-label">Hasta sin límite</span><input id="max-range" type="range" min="15" max="1200" step="5" value="1200"></label>',
+    '</div></div>',
+
+    '<main class="grid" id="grid"></main>',
+
+    '<footer class="foot">',
+      '<p class="foot-lead">Gracias por la ilusión</p>',
+      '<p class="foot-sub">Marta y Rubén · Nahia, 27.11.2026</p>',
+    '</footer>',
+
+    '<div id="modal-root"></div>',
+    '<div id="toast-root"></div>',
+    '<div id="confetti-root"></div>'
+  ].join('');
+}
+
+/* ── Decorate a product for display ── */
+function decorate(p){
+  var taken = isTaken(p);
+  var got = state.contrib[p.id] || 0;
+  var isGroup = canShare(p) && !taken;
+  return Object.assign({}, p, {
+    catLabel: CAT_LABELS[p.c] || "",
+    noImg: !p.img,
+    taken: taken,
+    op: taken ? ".45" : "1",
+    isGroup: isGroup,
+    pct: Math.min(100, Math.round(got / p.price * 100)) + "%",
+    groupLine: got > 0
+      ? eur(got) + " de " + eur(p.price) + " · faltan " + eur(p.price - got)
+      : "Se puede compartir entre varios",
+    cta: isGroup ? "Reservar o aportar" : "Reservar"
+  });
+}
+
+function getItems(){
+  var items = PRODUCTS.filter(function(p){
+    return (state.cat === "all" || p.c === state.cat) &&
+           (p.price <= state.maxPrice || state.maxPrice >= 1200);
+  });
+  items = items.slice().sort(function(a, b){
+    return (isTaken(a) ? 1 : 0) - (isTaken(b) ? 1 : 0);
+  });
+  return items.map(decorate);
+}
+
+/* ── Renderers ── */
+function renderCountdown(){
+  var days = Math.max(0, Math.ceil((DUE - new Date()) / 86400000));
+  var cdMonths = Math.floor(days / 30.44);
+  var cdWeeks = Math.floor((days - cdMonths * 30.44) / 7);
+  var cdDays = Math.max(0, Math.round(days - cdMonths * 30.44 - cdWeeks * 7));
+  $("cd-months").textContent = cdMonths;
+  $("cd-weeks").textContent = cdWeeks;
+  $("cd-days").textContent = cdDays;
+}
+
+function renderChips(){
+  var nodes = document.querySelectorAll("#chips .chip");
+  for (var i = 0; i < nodes.length; i++){
+    nodes[i].classList.toggle("active", nodes[i].dataset.k === state.cat);
+  }
+}
+
+function updateMaxLabel(){
+  $("max-label").textContent = "Hasta " + (state.maxPrice >= 1200 ? "sin límite" : eur(state.maxPrice));
+}
+
+function renderProgress(){
+  var total = PRODUCTS.length;
+  var takenList = PRODUCTS.filter(isTaken);
+  var pct = total ? Math.round(takenList.length / total * 100) : 0;
+  $("progress-line").textContent = total
+    ? takenList.length + " de " + total + " regalos ya tienen dueño. " + (total - takenList.length) + " siguen libres."
+    : "Cargando la lista…";
+  $("progress-fill").style.width = pct + "%";
+  $("progress-pct").textContent = pct + "% completada";
+}
+
+function renderHighlights(){
+  var sec = $("highlights");
+  var hi = PRODUCTS.filter(function(p){ return p.hi && !isTaken(p); }).slice(0, 4).map(decorate);
+  if (!hi.length){ sec.hidden = true; sec.innerHTML = ""; return; }
+  sec.hidden = false;
+  sec.innerHTML =
+    '<div class="wrap">' +
+      '<div class="hi-head">' +
+        '<h2>Lo que más nos hace falta</h2>' +
+        '<p>Si dudas, empieza por aquí</p>' +
+      '</div>' +
+      '<div class="hi-grid">' +
+        hi.map(function(h){
+          return '<article class="hi-card">' +
+            '<div class="hi-img">' +
+              (h.img ? '<img src="' + esc(h.img) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '') +
+              PH +
+            '</div>' +
+            '<div class="hi-body">' +
+              '<p class="hi-n">' + esc(h.n) + '</p>' +
+              '<p class="hi-note">' + esc(h.note || "") + '</p>' +
+              '<div class="hi-foot">' +
+                '<span class="hi-p">' + esc(h.p) + '</span>' +
+                '<button class="btn-mini-dark" data-act="open" data-id="' + h.id + '">Reservar</button>' +
+              '</div>' +
+            '</div>' +
+          '</article>';
+        }).join('') +
+      '</div>' +
+    '</div>';
+}
+
+function cardHTML(it){
+  var imgArea = it.img
+    ? '<img src="' + esc(it.img) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' + PH
+    : '<div class="img-slot" data-sid="p-' + it.id + '">' + PH + '<span class="slot-hint">arrastra una foto</span></div>';
+  return '<article class="card' + (it.taken ? ' taken' : '') + '" style="opacity:' + it.op + '">' +
+    '<div class="card-img">' +
+      imgArea +
+      (it.isGroup ? '<span class="badge">Entre varios</span>' : '') +
+    '</div>' +
+    '<div class="card-body">' +
+      '<p class="card-cat">' + esc(it.catLabel) + '</p>' +
+      '<p class="card-name">' + esc(it.n) + '</p>' +
+      '<p class="card-price">' + esc(it.p) + '</p>' +
+      (it.size ? '<p class="card-size">' + esc(it.size) + '</p>' : '') +
+      (it.isGroup
+        ? '<div class="grp"><div class="grp-bar"><div class="grp-fill" style="width:' + it.pct + '"></div></div><p class="grp-line">' + esc(it.groupLine) + '</p></div>'
+        : '') +
+      '<div class="card-actions">' +
+        '<a class="btn-shop" href="' + esc(it.url) + '" target="_blank" rel="noopener noreferrer">Dónde comprarlo</a>' +
+        (it.taken
+          ? '<div class="taken-badge">Ya reservado ✓</div>'
+          : '<button class="btn-reserve" data-act="open" data-id="' + it.id + '">' + esc(it.cta) + '</button>') +
+      '</div>' +
+    '</div>' +
+  '</article>';
+}
+
+function renderGrid(){
+  var items = getItems();
+  var total = PRODUCTS.length;
+  var grid = $("grid");
+  if (total > 0 && items.length === 0){
+    grid.innerHTML =
+      '<div class="empty">' +
+        '<p class="empty-h">Aquí no queda nada con estos filtros</p>' +
+        '<p class="empty-p">Sube el precio máximo o vuelve a ver toda la lista.</p>' +
+        '<button class="btn-dark" data-act="reset">Ver toda la lista</button>' +
+      '</div>';
+    return;
+  }
+  grid.innerHTML = items.map(cardHTML).join('');
+  upgradeSlots();
+}
+
+/* ── Modal ── */
+function tipoHTML(m){
+  var gr = remainOf(m) ? "(faltan " + eur(remainOf(m)) + ")" : "";
+  return '<div>' +
+    '<p class="m-h">Es un regalo grande</p>' +
+    '<p class="m-p">¿Lo regalas tú solo o preferís juntaros varios y aportar cada uno una parte?</p>' +
+    '<div class="opt-col">' +
+      '<button class="opt' + (!state.shared ? ' sel' : '') + '" data-act="pickSolo">' +
+        '<span class="opt-t">Lo regalo yo solo</span>' +
+        '<span class="opt-s">Queda reservado entero a tu nombre</span>' +
+      '</button>' +
+      '<button class="opt' + (state.shared ? ' sel' : '') + '" data-act="pickShared">' +
+        '<span class="opt-t">Entre varios</span>' +
+        '<span class="opt-s">Aportas la parte que quieras y se va sumando ' + gr + '</span>' +
+      '</button>' +
+    '</div>' +
+    '<div class="m-btns">' +
+      '<button class="btn-line f1" data-act="closeModal">Cancelar</button>' +
+      '<button class="btn-dark f2" data-act="goModo">Seguir</button>' +
+    '</div>' +
+  '</div>';
+}
+
+function modoHTML(m){
+  var rem = remainOf(m);
+  var gr = rem ? "(faltan " + eur(rem) + ")" : "";
+  var showAmount = state.shared && canShare(m);
+  var sName = store(m);
+  var extras = PRODUCTS.filter(function(x){
+    return x.id !== m.id && !isTaken(x) && store(x) === sName;
+  });
+  var amountOpts = [25, 50, 100, rem].filter(function(v, i, a){
+    return v > 0 && a.indexOf(v) === i;
+  }).slice(0, 4);
+
+  return '<div>' +
+    '<p class="m-h">' + (state.shared ? "¿Cómo quieres aportar tu parte?" : "¿Lo compras tú o nos haces un Bizum?") + '</p>' +
+    '<div class="opt-2">' +
+      '<button class="opt' + (state.mode === "envio" ? " sel" : "") + '" data-act="pickEnvio">' +
+        '<span class="opt-t">Lo compro yo</span><span class="opt-s">Os lo envío a casa</span>' +
+      '</button>' +
+      '<button class="opt' + (state.mode === "bizum" ? " sel" : "") + '" data-act="pickBizum">' +
+        '<span class="opt-t">Os hago Bizum</span><span class="opt-s">Vosotros lo compráis</span>' +
+      '</button>' +
+    '</div>' +
+    (showAmount
+      ? '<div class="m-sub-block">' +
+          '<p class="m-p">¿Cuánto quieres aportar? ' + gr + '</p>' +
+          '<div class="chip-row">' +
+            amountOpts.map(function(v){
+              var lbl = (v === rem && rem <= 100) ? "Lo que falta · " + eur(v) : eur(v);
+              return '<button class="mini' + (state.amount === v ? " sel" : "") + '" data-act="amount" data-v="' + v + '">' + lbl + '</button>';
+            }).join('') +
+          '</div>' +
+        '</div>'
+      : '') +
+    (extras.length
+      ? '<div class="m-sub-block bordered">' +
+          '<p class="m-h sm">¿Aprovechas el envío de ' + esc(sName) + '?</p>' +
+          '<p class="m-fine">Puedes reservar más cosas de la misma web y mandarlo todo junto.</p>' +
+          '<div class="extra-list">' +
+            extras.map(function(x){
+              var on = !!state.extras[x.id];
+              return '<button class="extra' + (on ? " sel" : "") + '" data-act="extra" data-id="' + x.id + '">' +
+                '<span class="box">' + (on ? "✓" : "") + '</span>' +
+                '<span class="ex-n">' + esc(x.n) + '</span>' +
+                '<span class="ex-p">' + esc(x.p) + '</span>' +
+              '</button>';
+            }).join('') +
+          '</div>' +
+        '</div>'
+      : '') +
+    '<input id="f-giver" class="f-text' + (state.error ? " err" : "") + '" type="text" value="' + esc(state.giver) + '" placeholder="Tu nombre *">' +
+    '<p class="m-fine">Solo para saber de quién es el regalo. El resto de invitados únicamente verá que ya está cogido.</p>' +
+    (state.error ? '<p id="m-error" class="m-err">' + esc(state.error) + '</p>' : '') +
+    '<div class="m-btns">' +
+      '<button class="btn-line f1" data-act="back">' + (canShare(m) ? "Atrás" : "Cancelar") + '</button>' +
+      '<button class="btn-dark f2" data-act="goPostal">Seguir a la postal</button>' +
+    '</div>' +
+  '</div>';
+}
+
+function postalHTML(m){
+  var confirmLabel = (state.shared && canShare(m)) ? "Aportar " + eur(state.amount) : "Confirmar la reserva";
+  return '<div>' +
+    '<p class="m-h">Una postal para Nahia</p>' +
+    '<p class="m-fine">Elige un dibujo y escríbele unas líneas. Lo guardaremos todo en su álbum.</p>' +
+    '<div class="pc-grid">' +
+      POSTCARDS.map(function(pc, i){
+        return '<button class="pc' + (state.card === i ? " sel" : "") + '" title="' + esc(pc.name) + '" style="background:' + pc.bg + '" data-act="card" data-i="' + i + '">' + pc.icon + '</button>';
+      }).join('') +
+    '</div>' +
+    '<textarea id="f-note" class="f-area" rows="4" placeholder="Ej.: Nahia, no sabes las ganas que teníamos de conocerte…">' + esc(state.note) + '</textarea>' +
+    '<div class="m-btns">' +
+      '<button class="btn-line f1" data-act="backToModo">Atrás</button>' +
+      '<button class="btn-dark f2" data-act="confirm">' + confirmLabel + '</button>' +
+    '</div>' +
+  '</div>';
+}
+
+function doneHTML(){
+  var pc = POSTCARDS[state.card];
+  var postalText = state.note.trim() || "Nahia, qué ganas de conocerte.";
+  var doneHint = (state.shared && state.mode === "bizum")
+    ? "Ya está apuntada tu aportación. Mándanos la postal por WhatsApp y te pasamos el número de Bizum."
+    : (state.mode === "envio"
+      ? "Ya está reservado a tu nombre. Envíanos la postal por WhatsApp y te damos la dirección de envío."
+      : "Ya está reservado a tu nombre. Envíanos la postal por WhatsApp y te pasamos el número de Bizum.");
+  var waLabel = state.mode === "envio" ? "Enviar postal y pedir la dirección" : "Enviar postal y pedir el Bizum";
+  return '<div>' +
+    '<div class="postal-card">' +
+      '<div class="postal-head">' +
+        '<span class="postal-icon" style="background:' + pc.bg + '">' + pc.icon + '</span>' +
+        '<p class="postal-kick">Postal para Nahia</p>' +
+      '</div>' +
+      '<p class="postal-text">' + esc(postalText) + '</p>' +
+      '<p class="postal-sign">— ' + esc(state.giver) + '</p>' +
+    '</div>' +
+    '<p class="m-p">' + doneHint + '</p>' +
+    '<div class="opt-col">' +
+      '<button class="btn-dark" data-act="sendWhatsApp">' + waLabel + '</button>' +
+      '<button class="btn-line" data-act="closeModal">Ahora no, lo hago luego</button>' +
+    '</div>' +
+  '</div>';
+}
+
+function renderModal(){
+  var root = $("modal-root");
+  var m = state.modal;
+  if (!m){ root.innerHTML = ""; document.body.style.overflow = ""; return; }
+  document.body.style.overflow = "hidden";
+
+  var kicker = state.step === "done"
+    ? "Reserva hecha"
+    : (state.shared ? "Regalo entre varios" : "Reservar regalo");
+
+  var body = "";
+  if (state.step === "tipo") body = tipoHTML(m);
+  else if (state.step === "modo") body = modoHTML(m);
+  else if (state.step === "postal") body = postalHTML(m);
+  else if (state.step === "done") body = doneHTML();
+
+  root.innerHTML =
+    '<div class="backdrop" data-act="backdrop">' +
+      '<div class="sheet" data-act="stop">' +
+        '<p class="m-kicker">' + kicker + '</p>' +
+        '<p class="m-title">' + esc(m.n) + '</p>' +
+        '<p class="m-price">' + esc(m.p) + '</p>' +
+        body +
+      '</div>' +
+    '</div>';
+
+  var g = $("f-giver");
+  if (g) g.addEventListener("input", function(){
+    state.giver = g.value;
+    var er = $("m-error");
+    if (er) er.remove();
+    g.classList.remove("err");
+  });
+  var n = $("f-note");
+  if (n) n.addEventListener("input", function(){ state.note = n.value; });
+}
+
+/* ── Flow actions ── */
+function open(p){
+  var giver = "";
+  try { giver = (JSON.parse(localStorage.getItem(KEY + "-me") || "{}")).giver || ""; } catch (e) {}
+  var big = canShare(p);
+  state.modal = p;
+  state.step = big ? "tipo" : "modo";
+  state.error = "";
+  state.note = "";
+  state.giver = giver;
+  state.shared = false;
+  state.extras = {};
+  state.card = 0;
+  state.mode = "envio";
+  state.amount = Math.min(50, Math.max(10, Math.round((p.price - (state.contrib[p.id] || 0)) / 4 / 5) * 5));
+  renderModal();
+}
+function goModo(){
+  state.step = "modo";
+  state.error = "";
+  state.mode = state.shared ? "bizum" : "envio";
+  renderModal();
+}
+function goPostal(){
+  if (state.giver.trim().length < 2){
+    state.error = "Escribe tu nombre para que sepamos de quién es el regalo.";
+    renderModal();
+    return;
+  }
+  state.step = "postal";
+  state.error = "";
+  renderModal();
+}
+function backToModo(){
+  state.step = "modo";
+  state.error = "";
+  renderModal();
+}
+function back(){
+  if (state.modal && canShare(state.modal)){
+    state.step = "tipo";
+    state.error = "";
+    renderModal();
+  } else {
+    closeModal();
+  }
+}
+function closeModal(){
+  state.modal = null;
+  renderModal();
+}
+function confirmReserve(){
+  var p = state.modal;
+  if (!p) return;
+  var who = state.giver.trim();
+  var isGroup = state.shared && canShare(p);
+  var nota = state.note.trim();
+  var pc = POSTCARDS[state.card];
+  var postal = nota ? " Le dejo esta postal (" + pc.icon + " " + pc.name + "): «" + nota + "» — " + who : "";
+  var extraList = PRODUCTS.filter(function(x){ return state.extras[x.id]; });
+  var extraTxt = extraList.length
+    ? " Y de la misma web (" + store(p) + ") cojo también: " + extraList.map(function(x){ return x.n + " (" + x.p + ")"; }).join(", ") + "."
+    : "";
+  var msg;
+  if (isGroup){
+    msg = "¡Hola! Soy " + who + ". Quiero aportar " + eur(state.amount) + " al regalo compartido \"" + p.n + "\" de la lista de Nahia. ¿Me mandáis el número de Bizum?" + postal;
+  } else if (state.mode === "envio"){
+    msg = "¡Hola! Soy " + who + ". Reservo \"" + p.n + "\" de la lista de Nahia: lo compro yo y os lo envío, ¿me dais la dirección?" + extraTxt + postal;
+  } else {
+    msg = "¡Hola! Soy " + who + ". Reservo \"" + p.n + "\"" + (extraList.length ? " y " + extraList.length + " cosa(s) más de " + store(p) : "") + " de la lista de Nahia y os hago un Bizum. ¿Me mandáis el número?" + extraTxt + postal;
+  }
+  try { localStorage.setItem(KEY + "-me", JSON.stringify({ giver: who })); } catch (e) {}
+
+  var reserved = Object.assign({}, state.reserved);
+  var contrib = Object.assign({}, state.contrib);
+  if (isGroup){
+    contrib[p.id] = Math.min(p.price, (contrib[p.id] || 0) + state.amount);
+    if (contrib[p.id] >= p.price) reserved[p.id] = { mode: "group" };
+  } else {
+    reserved[p.id] = { mode: state.mode, giver: who };
+    extraList.forEach(function(x){ reserved[x.id] = { mode: state.mode, giver: who }; });
+  }
+  state.reserved = reserved;
+  state.contrib = contrib;
+  persist();
+
+  syncPush({
+    id: p.id,
+    producto: p.n,
+    nombre: who,
+    metodo: isGroup ? "Entre varios" : (state.mode === "envio" ? "Envío" : "Bizum"),
+    importe: isGroup ? state.amount : "",
+    completo: isGroup ? (contrib[p.id] >= p.price) : true,
+    postal: nota ? (pc.icon + " " + pc.name + ": " + nota) : "",
+    extras: extraList.map(function(x){ return { id: x.id, n: x.n }; }),
+    mensaje: msg
+  });
+
+  state.step = "done";
+  state.error = "";
+  state.lastMsg = msg;
+  renderModal();
+  renderGrid();
+  renderProgress();
+  renderHighlights();
+  celebrate();
+}
+function sendWhatsApp(){
+  window.open("https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(state.lastMsg), "_blank");
+  state.modal = null;
+  renderModal();
+  toast("🌿 Gracias de verdad. Te contestamos con la dirección o el número de Bizum enseguida.");
+}
+function share(){
+  var txt = "Nahia llega el 27 de noviembre 🌿 Esta es su lista de regalos: " + location.href;
+  if (navigator.share){
+    navigator.share({ title: "Lista de regalos de Nahia", text: txt }).catch(function(){});
+  } else {
+    window.open("https://wa.me/?text=" + encodeURIComponent(txt), "_blank");
+  }
+}
+
+/* ── Toast + confetti ── */
+var _tt, _ct;
+function toast(msg){
+  var r = $("toast-root");
+  r.innerHTML = '<div class="toast">' + esc(msg) + '</div>';
+  clearTimeout(_tt);
+  _tt = setTimeout(function(){ r.innerHTML = ""; }, 6000);
+}
+function celebrate(){
+  if (!CONFETTI) return;
+  var r = $("confetti-root");
+  var colors = ["#8AA792", "#B4796A", "#E4D9BE", "#47614F"];
+  var html = "";
+  for (var i = 0; i < 22; i++){
+    var big = i % 3 === 0;
+    html += '<span style="' +
+      'left:' + (4 + i * 4.3) + '%;' +
+      'width:' + (big ? 9 : 6) + 'px;height:' + (big ? 9 : 6) + 'px;' +
+      'border-radius:' + (i % 2 ? "50%" : "1px") + ';' +
+      'background:' + colors[i % 4] + ';' +
+      '--dx:' + ((i % 5) - 2) * 34 + 'px;' +
+      '--rot:' + (240 + i * 37) + 'deg;' +
+      'animation:fall ' + (2.2 + (i % 5) * 0.35) + 's cubic-bezier(.3,.1,.6,1) ' + (i % 7) * 0.08 + 's forwards' +
+    '"></span>';
+  }
+  r.innerHTML = '<div class="confetti">' + html + '</div>';
+  clearTimeout(_ct);
+  _ct = setTimeout(function(){ r.innerHTML = ""; }, 3600);
+}
+
+/* ── Image slots (user-fillable, persisted per browser) ── */
+function slotKey(sid){ return "nahia-img-" + sid; }
+function applySlot(slot){
+  var data = null;
+  try { data = localStorage.getItem(slotKey(slot.dataset.sid)); } catch (e) {}
+  if (data){
+    slot.style.backgroundImage = "url(" + data + ")";
+    slot.classList.add("filled");
+  } else {
+    slot.style.backgroundImage = "";
+    slot.classList.remove("filled");
+  }
+}
+function readImage(f, slot){
+  if (!f || !/^image\//.test(f.type)) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try { localStorage.setItem(slotKey(slot.dataset.sid), rd.result); }
+    catch (e) { toast("La imagen es demasiado grande para guardarla en este navegador."); return; }
+    applySlot(slot);
+  };
+  rd.readAsDataURL(f);
+}
+function pickImage(slot){
+  var inp = document.createElement("input");
+  inp.type = "file";
+  inp.accept = "image/*";
+  inp.onchange = function(){ if (inp.files[0]) readImage(inp.files[0], slot); };
+  inp.click();
+}
+function upgradeSlots(){
+  var slots = document.querySelectorAll(".img-slot");
+  for (var i = 0; i < slots.length; i++){
+    var slot = slots[i];
+    if (!slot._up){
+      slot._up = true;
+      (function(s){
+        s.addEventListener("click", function(){ pickImage(s); });
+        s.addEventListener("dragover", function(e){ e.preventDefault(); s.classList.add("drag"); });
+        s.addEventListener("dragleave", function(){ s.classList.remove("drag"); });
+        s.addEventListener("drop", function(e){
+          e.preventDefault();
+          s.classList.remove("drag");
+          var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+          if (f) readImage(f, s);
+        });
+      })(slot);
+    }
+    applySlot(slot);
+  }
+}
+
+/* ── Click delegation ── */
+function delegatedClick(e){
+  var el = e.target.closest("[data-act]");
+  if (!el) return;
+  var a = el.dataset.act;
+  switch (a){
+    case "stop": return;
+    case "backdrop": return closeModal();
+    case "share": return share();
+    case "cat":
+      state.cat = el.dataset.k;
+      renderChips();
+      renderGrid();
+      return;
+    case "reset": {
+      state.cat = "all";
+      state.maxPrice = 1200;
+      var r = $("max-range");
+      if (r) r.value = 1200;
+      updateMaxLabel();
+      renderChips();
+      renderGrid();
+      return;
+    }
+    case "open": {
+      var p = PRODUCTS.filter(function(x){ return x.id === el.dataset.id; })[0];
+      if (p) open(p);
+      return;
+    }
+    case "pickSolo": state.shared = false; return renderModal();
+    case "pickShared": state.shared = true; return renderModal();
+    case "goModo": return goModo();
+    case "closeModal": return closeModal();
+    case "pickEnvio": state.mode = "envio"; return renderModal();
+    case "pickBizum": state.mode = "bizum"; return renderModal();
+    case "amount": state.amount = +el.dataset.v; return renderModal();
+    case "extra": {
+      var k = el.dataset.id;
+      if (state.extras[k]) delete state.extras[k];
+      else state.extras[k] = true;
+      return renderModal();
+    }
+    case "back": return back();
+    case "goPostal": return goPostal();
+    case "card": state.card = +el.dataset.i; return renderModal();
+    case "backToModo": return backToModo();
+    case "confirm": return confirmReserve();
+    case "sendWhatsApp": return sendWhatsApp();
+  }
+}
+
+/* ── Init ── */
+(function init(){
+  $("app").innerHTML = shellHTML();
+  loadState();
+
+  renderCountdown();
+  renderChips();
+  updateMaxLabel();
+  renderProgress();
+  renderHighlights();
+  renderGrid();
+  upgradeSlots();
+  renderModal();
+
+  $("max-range").addEventListener("input", function(e){
+    state.maxPrice = +e.target.value;
+    updateMaxLabel();
+    renderGrid();
+  });
+  document.addEventListener("click", delegatedClick);
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && state.modal) closeModal();
+  });
+  setInterval(renderCountdown, 60000);
+
+  syncPull();                                   // trae lo ya reservado por otros
+  document.addEventListener("visibilitychange", function(){
+    if (!document.hidden) syncPull();           // al volver a la pestaña, refresca
+  });
+})();
+</script>
+</body>
+</html>
