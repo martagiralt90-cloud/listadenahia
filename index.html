@@ -212,7 +212,7 @@ var SHARE_MIN = 200;
 var SHEET_URL = "https://script.google.com/macros/s/AKfycbyE4SEqmzMEm8PJXi2JYxkKD9Y9CphB8VT8wXiNhf3XZHyzZFXK8MxCpRXpGT8Dh8SQEg/exec";
 
 /* Neutral placeholder shown when a product has no photo (replaces emojis) */
-var PH = '<span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9.5" r="1.6"></circle><path d="M21 16l-5-5L7 20"></path></svg></span>';
+var PH = "";  // sin icono sobre las imágenes
 
 /* ── Data (from products.js) ── */
 var CAT_LABELS = {
@@ -262,7 +262,6 @@ var PRODUCTS = [
   { id:"cuna", c:"sueno", n:"Cuna Doco 120×60 · Cotinfant", p:"384 €", price:384, url:"https://www.bitti.es/es/cunas-colecho-y-moises-c42/cuna-colecho-doco-120x60-de-cotinfant-8214-p8214", img:"https://www.bitti.es/productes/356-cunadocosleeping120x60_.jpg", size:"120 × 60 cm", t:true },
   { id:"colchon", c:"sueno", n:"Colchón antiahogo Care Ultimate · Ecus Kids", p:"349 €", price:349, url:"https://ecuskids.com/products/colchon-cuna-care-ultimate", img:"https://ecuskids.com/cdn/shop/files/Care_Ultimate.jpg?v=1772454562&width=1200", size:"120 × 60 cm" },
   { id:"protector", c:"sueno", n:"Protector colchón Care 3D 120×60 · Ecus Kids", p:"39 €", price:39, url:"https://ecuskids.com/products/protector-care-3d?variant=55039872794997", img:"https://ecuskids.com/cdn/shop/files/protector_care_3d_kids_b94570aa-858b-4620-8114-6cfba8014691.jpg?v=1748003715&width=1200", size:"120 × 60 cm (cuna)" },
-  { id:"saco-ld", c:"sueno", n:"Saco invierno 90 cm Forest Friends · Little Dutch", p:"44,95 €", price:44.95, url:"https://little-dutch.com/en-eu/products/sleeping-bag-winter-90-cm-green-size-90-cm-forest-friends", img:"https://little-dutch.com/cdn/shop/files/0018786.jpg?v=1774995858", size:"Talla 90 cm · 6-18 meses" },
   { id:"saco-lila", c:"sueno", n:"Saco bambú Baby Lion · Lilulila", p:"59,90 €", price:59.9, url:"https://lilulila.com/es/products/baby-lion-bamboo-sleeping-bag", img:"https://cdn.shopify.com/s/files/1/0652/1523/4260/files/250.jpg?v=1725535670", size:"Talla 0-6 meses · TOG 2.5", note:"Para sus primeras noches en casa.", hi:true },
   { id:"silla", c:"movil", n:"Silla de coche Joie i-Spin 360", p:"339,95 €", price:339.95, url:"https://es.joiebaby.com/product/i-spin-360/", img:"https://mimabebes.es/56394-large_default/silla-de-coche-giratoria-joie-i-spin-360-40-105-cm.jpg", size:"i-Size R129 · 40-105 cm", t:true },
   { id:"carrito", c:"movil", n:"Carrito Muuvo Quick SE2 · Bbes & Co", p:"799 €", price:799, url:"https://www.bbes.es/products/carro-muuvo-quick-se2", img:"https://www.bbes.es/cdn/shop/products/Quick-SE2-Chromium-Black-Duo.jpg?v=1753765664&width=800", size:"Duo 2 en 1 · 0-22 kg", t:true },
@@ -282,9 +281,7 @@ var PRODUCTS = [
   { id:"hm-leggings", c:"ropa", n:"Pack 2 leggings extensibles · H&M", p:"≈ 13 €", price:13, url:"https://www2.hm.com/es_es/productpage.1248709011.html", img:"https://image.hm.com/assets/hm/30/6a/306a8f1b7a4baef491d8e0b7304c68b4a6325200.jpg?imwidth=1260", size:"Talla 56 · turquesa/pájaros" },
   { id:"hm-pelele", c:"ropa", n:"Pelele algodón gofrado · H&M", p:"≈ 15 €", price:15, url:"https://www2.hm.com/es_es/productpage.1266882009.html", img:"https://image.hm.com/assets/hm/b8/93/b893024c486bac223790708dad8ebbebbe376abd.jpg?imwidth=1260", size:"Talla 56 · violeta claro" },
   { id:"baberos-dbd", c:"ropa", n:"Baberos 2-pack Celebration Powder · Done by Deer", p:"12,95 €", price:12.95, url:"https://donebydeer.com/en-es/products/burp-cloth-2-pack-celebration-powder", img:"https://donebydeer.com/cdn/shop/files/3063101.jpg?v=1768917535&width=1200", size:"Pack de 2 · talla única" },
-  { id:"comoda", c:"higiene", n:"Cómoda cambiador Vitalispa Malia Oak · OK Living", p:"≈ 260 €", price:260, url:"https://www.ok-living.es/", img:"", size:"133 × 98 cm" },
   { id:"cambiador", c:"higiene", n:"Pack baño + cambiador de lujo Twistshake Mocha", p:"189,99 €", price:189.99, url:"https://twistshake.com/es/p/luxury-changing-mat-mocha", img:"https://products.twistshake.com/images/2578_cb08b96750-mocha_lux_chan-original.jpg", size:"Color Mocha · 0-4 años", t:true },
-  { id:"banera", c:"higiene", n:"Bañera plegable Grey · Twistshake", p:"41,99 €", price:41.99, url:"https://twistshake.com/es/p/bathtub-grey", img:"https://products.twistshake.com/images/1289_0b57d0bc10-bathtub-original.jpg", size:"79,5 × 47,5 cm · 0m+" },
   { id:"capa", c:"higiene", n:"Capa de baño Bunny Feel Blush · Babyshower", p:"30,60 €", price:30.6, url:"https://www.babyshower.es/es/capa-de-bano-bunny-feel-blush-7272.html", img:"https://www.babyshower.es/25832-thickbox_default/capa-de-bano-bunny-feel-blush.jpg", size:"75 × 75 cm · 0-18 meses" },
   { id:"capa-vb", c:"higiene", n:"Capa de baño Pommes d'amour · Vertbaudet", p:"22,99 €", price:22.99, url:"https://www.vertbaudet.es/capa-de-bano-para-bebe-pommes-d-amour-rosa-medio-liso-con-motivos.htm?ProductId=704040157&FiltreCouleur=6650", img:"https://media.vertbaudet.es/Pictures/vertbaudet/167036/capa-de-bano-para-bebe-pommes-damour.jpg", size:"80×80 o 100×100 cm" },
   { id:"lote-vujo", c:"higiene", n:"Lote cuidado bebé ecológico · Vujo / PureNature", p:"53,20 €", price:53.2, url:"https://www.purenature.es/lote-bebe-vujo", img:"https://www.purenature.es/media/image/d7/7f/70/21856_01.jpg", size:"6 productos" },
@@ -293,10 +290,8 @@ var PRODUCTS = [
   { id:"babero-mint", c:"alim", n:"Babero Simply Lullaby Mint · Babyshower", p:"14,50 €", price:14.5, url:"https://www.babyshower.es/es/babero-simply-lullaby-mint-9572.html", img:"https://www.babyshower.es/35631-thickbox_default/babero-simply-lullaby-mint.jpg", size:"22 × 18 cm" },
   { id:"babero", c:"alim", n:"Babero Star Cloud Powder · Babyshower", p:"14,50 €", price:14.5, url:"https://www.babyshower.es/es/babero-star-cloud-powder-3673.html", img:"https://www.babyshower.es/9699-thickbox_default/babero-star-cloud-powder.jpg", size:"22 × 18 cm · 0-18 meses" },
   { id:"blw", c:"alim", n:"BLW Set III silicona · Minikoioi", p:"≈ 42 €", price:42, url:"https://www.minikoioi.com/product-page/blw-set-iii-silicone-feeding-set-bib-plate-bowl-cup-spoon-fork-2", img:"https://static.wixstatic.com/media/a67799_bc6c94062ecf4586a084c2e2baf95d19~mv2.png/v1/fit/w_500,h_500,q_90/file.png", size:"Bib + plato + bol + vaso + cuchara + tenedor" },
-  { id:"alfombra", c:"juego", n:"Alfombra Jamie Ocean Adventure · Rug Editorial", p:"Ver precio en la web", price:851, url:"https://rugeditorial.com/es/products/jamie-alfombra-infantil-ocean-adventure", img:"https://rugeditorial.com/cdn/shop/files/B-133-150x215-BEIGE_ec5bba23-b01a-4287-a6aa-6b78c312d680.jpg?v=1769078588&width=600", size:"150 × 215 cm" },
   { id:"gym", c:"juego", n:"Gimnasio de actividades · Lovevery Play Gym", p:"155 €", price:155, url:"https://lovevery.eu/products/the-play-gym", img:"", size:"0+ meses · 5 zonas" },
   { id:"sofa", c:"juego", n:"Play Sofa House Bundle · Funzy", p:"549,90 €", price:549.9, url:"https://myfunzy.com/products/spielsofa-haus-bundle", img:"https://myfunzy.com/cdn/shop/files/funzy-productphoto-spielsofa-bundle-haus-creme-beige_1_DEAT.webp?v=1784023512", size:"Corduroy Cream Beige" },
-  { id:"alfombra-vb", c:"juego", n:"Alfombra de actividades Disfruta de la Vida · Vertbaudet", p:"≈ 60 €", price:60, url:"https://www.vertbaudet.es/alfombra-de-actividades-disfruta-de-la-vida-beige.htm?ProductId=341004136&FiltreCouleur=0302", img:"https://media.vertbaudet.es/Pictures/vertbaudet/412845/alfombra-de-actividades-disfruta-de-la-vida.jpg", size:"Beige multicolor" },
   { id:"tinyfarm", c:"juego", n:"Tiny Farm Gift Bundle (recién nacido) · Done by Deer", p:"76,80 €", price:76.8, url:"https://donebydeer.com/en-es/collections/activity-toys-for-babies-and-toddlers/products/tiny-farm-gift-bundle-0-months", img:"https://donebydeer.com/cdn/shop/files/tinyfarmgiftbundle0_months_b2e06752-338d-434a-be03-5b922f1e935a.jpg?v=1783412584&width=1000", size:"0 meses+" },
   { id:"olicarol", c:"juego", n:"Pack Regalo Recién Nacido Fresh Baby · Oli&Carol", p:"55 €", price:55, url:"https://oliandcarol.com/es/products/newborn-fesh-baby-gift-set", img:"https://oliandcarol.com/cdn/shop/files/1.NEWBORNFRESHBABYSET.jpg?v=1774943974&width=1200", size:"3 piezas", note:"Sus primeros mordedores, de caucho natural.", hi:true },
   { id:"lavabiberones", c:"higiene", n:"Lavabiberones + esterilizador KleanPal Pro · Momcozy", p:"369,99 €", price:369.99, url:"https://es.momcozy.com/products/momcozy-kleanpal-pro-baby-bottle-washer", img:"https://es.momcozy.com/cdn/shop/files/Momcozy_Baby_Bottle_Washer_1.webp?v=1777304628&width=1200", size:"3 en 1" }
@@ -540,8 +535,8 @@ function renderHighlights(){
 
 function cardHTML(it){
   var imgArea = it.img
-    ? '<img src="' + esc(it.img) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' + PH
-    : '<div class="img-slot" data-sid="p-' + it.id + '">' + PH + '<span class="slot-hint">arrastra una foto</span></div>';
+    ? '<img src="' + esc(it.img) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">'
+    : '<div class="img-slot" data-sid="p-' + it.id + '"></div>';
   return '<article class="card' + (it.taken ? ' taken' : '') + '" style="opacity:' + it.op + '">' +
     '<div class="card-img">' +
       imgArea +
