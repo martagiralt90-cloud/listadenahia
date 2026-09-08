@@ -77,6 +77,8 @@ h1,h2{font-family:Newsreader,Georgia,serif}
 .hi-note{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:15px;line-height:1.6;color:#5C635C;margin:0 0 14px}
 .hi-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
 .hi-p{font-size:13px;color:#7A8279}
+.hi-body .card-size{margin:0 0 10px}
+.hi-body .btn-shop{display:block;margin:0 0 12px}
 .btn-mini-dark{padding:9px 16px;border:none;border-radius:2px;background:#1F2420;color:#FBFAF7;font-size:12.5px;font-weight:500}
 .btn-mini-dark:hover{background:#47614F}
 
@@ -267,7 +269,7 @@ var PRODUCTS = [
   { id:"silla", c:"movil", n:"Silla de coche Joie i-Spin 360", p:"339,95 €", price:339.95, url:"https://es.joiebaby.com/product/i-spin-360/", img:"https://mimabebes.es/56394-large_default/silla-de-coche-giratoria-joie-i-spin-360-40-105-cm.jpg", size:"i-Size R129 · 40-105 cm", t:true },
   { id:"carrito", c:"movil", n:"Carrito Muuvo Quick SE2 · Bbes & Co", p:"799 €", price:799, url:"https://www.bbes.es/products/carro-muuvo-quick-se2", img:"https://www.bbes.es/cdn/shop/products/Quick-SE2-Chromium-Black-Duo.jpg?v=1753765664&width=800", size:"Duo 2 en 1 · 0-22 kg", t:true },
   { id:"portabebe", c:"movil", n:"Portabebé · Flybaby", p:"249,95 €", price:249.95, url:"https://flybaby.berlin/en-es/products/flybaby-carrier", img:"https://flybaby.berlin/cdn/shop/files/Flybaby-Babytrage-Terra-Frontansicht-variant_50470894567764.jpg?v=1756915091&width=600", size:"Nacimiento-15 kg · cinturón 66-127 cm" },
-  { id:"capazo", c:"movil", n:"Capazo vestido Sage Powder · Babyshower", p:"180 €", price:180, url:"https://www.babyshower.es/es/capazo-vestido-sage-powder-2135.html", img:"https://www.babyshower.es/5298-thickbox_default/capazo-vestido-sage-powder.jpg", size:"Solo vestiduras" },
+  { id:"capazo", c:"movil", n:"Capazo vestido Sage Powder · Babyshower", p:"180 €", price:180, url:"https://www.babyshower.es/es/capazo-vestido-sage-powder-2135.html", img:"https://www.babyshower.es/5298-thickbox_default/capazo-vestido-sage-powder.jpg", size:"Capazo completo (cesto + colchón + vestiduras)" },
   { id:"bolso", c:"movil", n:"Bolso cambiador Quilted · Done by Deer", p:"89,95 €", price:89.95, url:"https://donebydeer.com/en-es/products/quilted-changing-bag-black", img:"https://donebydeer.com/cdn/shop/files/changingbagblackk1.jpg?v=1782829886&width=1200", size:"Color negro" },
   { id:"trio", c:"ropa", n:"Trío Perfecto On the Farm · Zipster", p:"79,90 €", price:79.9, url:"https://zipsterbaby.es/products/el-trio-perfecto-en-la-granja", img:"https://zipsterbaby.es/cdn/shop/files/79_0b4ad41d-9b73-4fd6-966d-9c81b08b4c8c.png?v=1785252822", size:"Talla 1 · 0-3 meses", note:"Tres piezas para los primeros días, con cremallera.", hi:true },
   { id:"minimax-mint", c:"ropa", n:"Set muselinas Minimax Mint Breeze · Babyshower", p:"23,92 €", price:23.92, url:"https://www.babyshower.es/es/set-muselinas-minimax-mint-breeze-8587.html", img:"https://www.babyshower.es/30586-thickbox_default/set-muselinas-minimax-mint-breeze.jpg", size:"Set 2 piezas · 140×100 y 45×45 cm" },
@@ -281,9 +283,8 @@ var PRODUCTS = [
   { id:"hm-bodies", c:"ropa", n:"Pack 2 bodies extensibles · H&M", p:"≈ 13 €", price:13, url:"https://www2.hm.com/es_es/productpage.1261599010.html", img:"https://image.hm.com/assets/hm/82/8b/828bc519683a9c05e8f4a6ac7f3eb24ecc3bd81c.jpg?imwidth=1260", size:"Talla 56 · turquesa/pájaros" },
   { id:"hm-leggings", c:"ropa", n:"Pack 2 leggings extensibles · H&M", p:"≈ 13 €", price:13, url:"https://www2.hm.com/es_es/productpage.1248709011.html", img:"https://image.hm.com/assets/hm/30/6a/306a8f1b7a4baef491d8e0b7304c68b4a6325200.jpg?imwidth=1260", size:"Talla 56 · turquesa/pájaros" },
   { id:"hm-pelele", c:"ropa", n:"Pelele algodón gofrado · H&M", p:"≈ 15 €", price:15, url:"https://www2.hm.com/es_es/productpage.1266882009.html", img:"https://image.hm.com/assets/hm/b8/93/b893024c486bac223790708dad8ebbebbe376abd.jpg?imwidth=1260", size:"Talla 56 · violeta claro" },
-  { id:"baberos-dbd", c:"ropa", n:"Baberos 2-pack Celebration Powder · Done by Deer", p:"12,95 €", price:12.95, url:"https://donebydeer.com/en-es/products/burp-cloth-2-pack-celebration-powder", img:"https://donebydeer.com/cdn/shop/files/3063101.jpg?v=1768917535&width=1200", size:"Pack de 2 · talla única" },
+  { id:"baberos-dbd", c:"ropa", n:"Burp cloth (muselina de eructos) 2-pack Celebration Powder · Done by Deer", p:"12,95 €", price:12.95, url:"https://donebydeer.com/en-es/products/burp-cloth-2-pack-celebration-powder", img:"https://donebydeer.com/cdn/shop/files/3063101.jpg?v=1768917535&width=1200", size:"Pack de 2 · talla única" },
   { id:"cambiador", c:"higiene", n:"Pack baño + cambiador de lujo Twistshake Mocha", p:"189,99 €", price:189.99, url:"https://twistshake.com/es/p/luxury-changing-mat-mocha", img:"https://products.twistshake.com/images/2578_cb08b96750-mocha_lux_chan-original.jpg", size:"Color Mocha · 0-4 años", t:true },
-  { id:"capa", c:"higiene", n:"Capa de baño Bunny Feel Blush · Babyshower", p:"30,60 €", price:30.6, url:"https://www.babyshower.es/es/capa-de-bano-bunny-feel-blush-7272.html", img:"https://www.babyshower.es/25832-thickbox_default/capa-de-bano-bunny-feel-blush.jpg", size:"75 × 75 cm · 0-18 meses" },
   { id:"capa-vb", c:"higiene", n:"Capa de baño Pommes d'amour · Vertbaudet", p:"22,99 €", price:22.99, url:"https://www.vertbaudet.es/capa-de-bano-para-bebe-pommes-d-amour-rosa-medio-liso-con-motivos.htm?ProductId=704040157&FiltreCouleur=6650", img:"https://media.vertbaudet.es/Pictures/vertbaudet/167036/capa-de-bano-para-bebe-pommes-damour.jpg", size:"80×80 o 100×100 cm" },
   { id:"lote-vujo", c:"higiene", n:"Lote cuidado bebé ecológico · Vujo / PureNature", p:"53,20 €", price:53.2, url:"https://www.purenature.es/lote-bebe-vujo", img:"https://www.purenature.es/media/image/d7/7f/70/21856_01.jpg", size:"6 productos" },
   { id:"babero-mint", c:"alim", n:"Babero Simply Lullaby Mint · Babyshower", p:"14,50 €", price:14.5, url:"https://www.babyshower.es/es/babero-simply-lullaby-mint-9572.html", img:"https://www.babyshower.es/35631-thickbox_default/babero-simply-lullaby-mint.jpg", size:"22 × 18 cm" },
@@ -328,6 +329,14 @@ function $(id){ return document.getElementById(id); }
 
 /* ── Persistence ── */
 function loadState(){
+  // catálogo cacheado de la última visita (la hoja de Google manda)
+  try {
+    var rawCat = localStorage.getItem(KEY + "-cat");
+    if (rawCat) {
+      var arr = JSON.parse(rawCat);
+      if (Array.isArray(arr) && arr.length) PRODUCTS = arr;
+    }
+  } catch (e) {}
   var seed = {};
   PRODUCTS.forEach(function(p){ if (p.t) seed[p.id] = { mode: "envio" }; });
   var stored = {};
@@ -351,12 +360,16 @@ function syncPull(){
     .then(function(r){ return r.json(); })
     .then(function(data){
       if (!data || typeof data !== "object") return;
+      if (data.products && data.products.length) {
+        PRODUCTS = data.products;               // la hoja de Google es el maestro
+        try { localStorage.setItem(KEY + "-cat", JSON.stringify(PRODUCTS)); } catch (e) {}
+      }
       var seed = {};
       PRODUCTS.forEach(function(p){ if (p.t) seed[p.id] = { mode: "envio" }; });
       state.reserved = Object.assign(seed, data.reserved || {});
       state.contrib = data.contrib || {};
       persist();
-      renderGrid(); renderProgress(); renderHighlights();
+      renderChips(); renderGrid(); renderProgress(); renderHighlights();
       if (state.modal) renderModal();
     })
     .catch(function(){ /* sin conexión: seguimos con lo local */ });
@@ -514,11 +527,12 @@ function renderHighlights(){
           return '<article class="hi-card">' +
             '<div class="hi-img">' +
               (h.img ? '<img src="' + esc(h.img) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '') +
-              PH +
             '</div>' +
             '<div class="hi-body">' +
               '<p class="hi-n">' + esc(h.n) + '</p>' +
-              '<p class="hi-note">' + esc(h.note || "") + '</p>' +
+              (h.note ? '<p class="hi-note">' + esc(h.note) + '</p>' : '') +
+              (h.size ? '<p class="card-size">' + esc(h.size) + '</p>' : '') +
+              '<a class="btn-shop" href="' + esc(h.url) + '" target="_blank" rel="noopener noreferrer">Dónde comprarlo</a>' +
               '<div class="hi-foot">' +
                 '<span class="hi-p">' + esc(h.p) + '</span>' +
                 '<button class="btn-mini-dark" data-act="open" data-id="' + h.id + '">Reservar</button>' +

@@ -1,97 +1,162 @@
 /**
- * Lista de regalos de Nahia — puente web ↔ Google Sheet.
+ * Lista de regalos de Nahia — la hoja "Lista" es el MAESTRO.
  *
- * Pega este archivo en:  Hoja de Google → Extensiones → Apps Script  (borra lo que haya).
- * Luego:  Implementar → Nueva implementación → Aplicación web
- *         · Ejecutar como: Yo
- *         · Quién tiene acceso: Cualquier persona
- *         Copia la URL que termina en /exec y pégala en lista-nahia.html (SHEET_URL).
+ *   doGet   ->  { products:[...], reserved:{...}, contrib:{...} }
+ *               (la web construye la lista de regalos con "products")
+ *   doPost  ->  registra una reserva (fila en "Reservas (log)" + marca la fila en "Lista")
  *
- * Hoja "Lista"  (columnas):
- *   1 ID · 5 Precio web · 6 Precio (núm.) · 9 Estado ·
- *   10 Reservado por · 11 Método de pago · 12 Aportado (€) · 13 Visible en web
- * Hoja "Reservas (log)": una fila por reserva (registro).
+ * PARA EDITAR LA LISTA, trabaja en la pestaña "Lista":
+ *   · Quitar un regalo         -> borra su fila  (o pon "Visible en web" = No)
+ *   · Cambiar precio/nombre/
+ *     talla/foto/enlace/esencial-> edita esa celda
+ *   · Marcar como reservado a
+ *     mano                     -> rellena "Reservado por" + "Método de pago"
+ *
+ * NO cambies los títulos de las columnas ni los valores de la columna "ID".
+ *
+ * Tras pegar este archivo:  Implementar -> Gestionar implementaciones ->
+ *   (lápiz) -> Versión: Nueva versión -> Implementar.
  */
 
 var HOJA_LISTA = 'Lista';
 var HOJA_LOG   = 'Reservas (log)';
-var COL = { id: 1, precio: 6, estado: 9, quien: 10, metodo: 11, aportado: 12, visible: 13 };
-var ANCHO = 13; // nº de columnas que leemos de la hoja "Lista"
 
-/**
- * La web pide el estado actual: { reserved:{id:{mode}}, contrib:{id:€} }
- * IMPORTANTE: aquí NO se devuelven nombres. Los invitados solo ven que algo
- * está cogido; el nombre de quien reserva queda solo en la hoja (privada),
- * en el log y en el mensaje de WhatsApp que os llega.
- */
-function doGet() {
-  var out = { reserved: {}, contrib: {} };
+/* normaliza texto para comparar cabeceras/categorías: minúsculas, sin acentos ni signos */
+function norm(s){
+  return String(s == null ? '' : s).toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]/g, '');
+}
+
+/* "🛏 Sueño" / "Movilidad" ... -> clave que usa la web */
+var CATMAP = {
+  sueno: 'sueno', sueo: 'sueno',
+  movilidad: 'movil',
+  ropa: 'ropa',
+  higiene: 'higiene',
+  lactancia: 'lact',
+  alimentacion: 'alim',
+  juego: 'juego', entretenimiento: 'juego',
+  salud: 'higiene'
+};
+
+function headerIndexer(sh){
+  var hdr = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0].map(norm);
+  return function(key){ return hdr.indexOf(key); };
+}
+
+function doGet(){
+  var out = { products: [], reserved: {}, contrib: {} };
   var sh = SpreadsheetApp.getActive().getSheetByName(HOJA_LISTA);
-  if (sh && sh.getLastRow() > 1) {
-    var data = sh.getRange(2, 1, sh.getLastRow() - 1, ANCHO).getValues();
-    data.forEach(function (row) {
-      var id = String(row[COL.id - 1] || '').trim();
-      if (!id) return;
-      var precio = Number(row[COL.precio - 1]) || 0;
-      var quien  = String(row[COL.quien - 1] || '').trim();
-      var metodo = String(row[COL.metodo - 1] || '').trim();
-      var aport  = Number(row[COL.aportado - 1]) || 0;
-      var estado = String(row[COL.estado - 1] || '').trim();
+  if (!sh || sh.getLastRow() < 2) return json(out);
 
-      if (metodo === 'Entre varios') {
-        if (aport > 0) out.contrib[id] = aport;                 // solo el importe, sin nombres
-        if (precio && aport >= precio) out.reserved[id] = { mode: 'group' };
-      } else if (quien || metodo || estado.indexOf('RESERVADO') === 0) {
-        out.reserved[id] = { mode: metodo === 'Bizum' ? 'bizum' : 'envio' };  // sin 'giver'
-      }
-    });
-  }
+  var ix = headerIndexer(sh);
+  var I = {
+    id:     ix('id'),
+    cat:    ix('categoria'),
+    n:      ix('producto'),
+    pw:     ix('precioweb'),
+    pn:     ix('precionum'),
+    size:   ix('tallainfo'),
+    ess:    ix('esencial'),
+    estado: ix('estado'),
+    quien:  ix('reservadopor'),
+    metodo: ix('metododepago'),
+    aport:  ix('aportado'),
+    vis:    ix('visibleenweb'),
+    foto:   ix('fotourl'),
+    url:    ix('enlacedecompra')
+  };
+  var g = function(r, k){ return I[k] < 0 ? '' : r[I[k]]; };
+
+  var rows = sh.getRange(2, 1, sh.getLastRow() - 1, sh.getLastColumn()).getValues();
+  rows.forEach(function(r){
+    var id = String(g(r, 'id')).trim();
+    if (!id) return;
+
+    var metodo = String(g(r, 'metodo')).trim();
+    var quien  = String(g(r, 'quien')).trim();
+    var aport  = Number(g(r, 'aport')) || 0;
+    var estado = String(g(r, 'estado')).trim();
+    var precio = Number(g(r, 'pn')) || 0;
+
+    /* ---- estado de reserva (siempre, aunque el regalo esté oculto) ---- */
+    if (metodo === 'Entre varios') {
+      if (aport > 0) out.contrib[id] = aport;
+      if (precio && aport >= precio) out.reserved[id] = { mode: 'group' };
+    } else if (metodo || quien || estado.indexOf('RESERVADO') === 0) {
+      out.reserved[id] = { mode: metodo === 'Bizum' ? 'bizum' : 'envio' };
+    }
+
+    /* ---- catálogo (solo si no está oculto) ---- */
+    if (String(g(r, 'vis')).trim().toLowerCase() === 'no') return;
+    var nombre = String(g(r, 'n')).trim();
+    var precioTxt = String(g(r, 'pw')).trim();
+    if (!nombre || (!precio && !precioTxt)) return;   // fila incompleta -> no se muestra
+
+    var catN = norm(g(r, 'cat'));
+    var p = {
+      id: id,
+      c: CATMAP[catN] || catN,
+      n: nombre,
+      p: precioTxt || (precio + ' €'),
+      price: precio,
+      url: String(g(r, 'url')).trim(),
+      img: String(g(r, 'foto')).trim()
+    };
+    var sz = String(g(r, 'size')).trim();
+    if (sz) p.size = sz;
+    if (norm(g(r, 'ess')) === 'si') p.hi = true;
+    if (metodo === 'Ya comprado') p.t = true;
+    out.products.push(p);
+  });
+
   return json(out);
 }
 
-/** La web comunica una reserva nueva. */
-function doPost(e) {
+function doPost(e){
   var lock = LockService.getScriptLock();
   lock.waitLock(20000);
   try {
-    var p = JSON.parse(e.postData.contents);
+    var pl = JSON.parse(e.postData.contents);
     var ss = SpreadsheetApp.getActive();
     var sh = ss.getSheetByName(HOJA_LISTA);
     var log = ss.getSheetByName(HOJA_LOG);
+    var ix = headerIndexer(sh);
+    var cId = ix('id') + 1, cPn = ix('precionum') + 1,
+        cQuien = ix('reservadopor') + 1, cMetodo = ix('metododepago') + 1,
+        cAport = ix('aportado') + 1, cEstado = ix('estado') + 1;
 
-    // 1) registro en "Reservas (log)"
     log.appendRow([
-      new Date(), p.id || '', p.producto || '', p.nombre || '',
-      p.metodo || '', p.importe === 0 ? 0 : (p.importe || ''),
-      p.postal || '', p.mensaje || '', 'web'
+      new Date(), pl.id || '', pl.producto || '', pl.nombre || '',
+      pl.metodo || '', pl.importe === 0 ? 0 : (pl.importe || ''),
+      pl.postal || '', pl.mensaje || '', 'web'
     ]);
 
-    // 2) actualizar "Lista": producto principal + posibles extras del mismo envío
-    var objetivos = [{ id: p.id, extra: false }].concat(
-      (p.extras || []).map(function (x) { return { id: x.id, extra: true }; })
+    var objetivos = [{ id: pl.id, extra: false }].concat(
+      (pl.extras || []).map(function (x) { return { id: x.id, extra: true }; })
     );
-    var data = sh.getRange(2, 1, sh.getLastRow() - 1, ANCHO).getValues();
+    var data = sh.getRange(2, 1, sh.getLastRow() - 1, sh.getLastColumn()).getValues();
 
-    objetivos.forEach(function (obj) {
-      for (var r = 0; r < data.length; r++) {
-        if (String(data[r][COL.id - 1]).trim() !== String(obj.id).trim()) continue;
-        var fila = r + 2;
-        var precio = Number(data[r][COL.precio - 1]) || 0;
-        var grupo = !obj.extra && p.metodo === 'Entre varios';
+    objetivos.forEach(function (o) {
+      for (var i = 0; i < data.length; i++) {
+        if (String(data[i][cId - 1]).trim() !== String(o.id).trim()) continue;
+        var fila = i + 2;
+        var precio = Number(data[i][cPn - 1]) || 0;
 
-        if (grupo) {
-          var acum = (Number(data[r][COL.aportado - 1]) || 0) + (Number(p.importe) || 0);
-          var previos = String(data[r][COL.quien - 1] || '').trim();
-          sh.getRange(fila, COL.aportado).setValue(acum);
-          sh.getRange(fila, COL.metodo).setValue('Entre varios');
-          sh.getRange(fila, COL.quien).setValue(previos ? previos + ', ' + p.nombre : p.nombre);
-          if (precio && acum >= precio) sh.getRange(fila, COL.estado).setValue('RESERVADO ✓');
+        if (!o.extra && pl.metodo === 'Entre varios') {
+          var acum = (Number(data[i][cAport - 1]) || 0) + (Number(pl.importe) || 0);
+          var prev = String(data[i][cQuien - 1] || '').trim();
+          sh.getRange(fila, cAport).setValue(acum);
+          sh.getRange(fila, cMetodo).setValue('Entre varios');
+          sh.getRange(fila, cQuien).setValue(prev ? prev + ', ' + pl.nombre : pl.nombre);
+          if (precio && acum >= precio) sh.getRange(fila, cEstado).setValue('RESERVADO ✓');
         } else {
-          sh.getRange(fila, COL.quien).setValue(p.nombre || '');
-          sh.getRange(fila, COL.metodo).setValue(
-            obj.extra && p.metodo === 'Entre varios' ? 'Envío' : (p.metodo || '')
+          sh.getRange(fila, cQuien).setValue(pl.nombre || '');
+          sh.getRange(fila, cMetodo).setValue(
+            o.extra && pl.metodo === 'Entre varios' ? 'Envío' : (pl.metodo || '')
           );
-          sh.getRange(fila, COL.estado).setValue('RESERVADO ✓');
+          sh.getRange(fila, cEstado).setValue('RESERVADO ✓');
         }
         break;
       }
@@ -105,8 +170,7 @@ function doPost(e) {
   }
 }
 
-function json(obj) {
-  return ContentService
-    .createTextOutput(JSON.stringify(obj))
+function json(obj){
+  return ContentService.createTextOutput(JSON.stringify(obj))
     .setMimeType(ContentService.MimeType.JSON);
 }
