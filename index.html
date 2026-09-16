@@ -702,6 +702,7 @@ function doneHTML(){
       ? "Ya está reservado a tu nombre. Envíanos la postal por WhatsApp y te damos la dirección de envío."
       : "Ya está reservado a tu nombre. Envíanos la postal por WhatsApp y te pasamos el número de Bizum.");
   var waLabel = state.mode === "envio" ? "Enviar postal y pedir la dirección" : "Enviar postal y pedir el Bizum";
+  var waHref = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(state.lastMsg);
   return '<div>' +
     '<div class="postal-card">' +
       '<div class="postal-head">' +
@@ -713,10 +714,10 @@ function doneHTML(){
     '</div>' +
     '<p class="m-p">' + doneHint + '</p>' +
     '<div class="opt-col">' +
-      '<button class="btn-whatsapp" data-act="sendWhatsApp">' +
+      '<a class="btn-whatsapp" href="' + waHref + '" target="_blank" rel="noopener noreferrer" data-act="waSent">' +
         '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.005 3C9.376 3 4 8.373 4 15c0 2.393.673 4.626 1.837 6.527L4 29l7.65-2.006A11.94 11.94 0 0 0 16.005 27C22.634 27 28 21.627 28 15S22.634 3 16.005 3zm0 21.75c-1.99 0-3.86-.548-5.463-1.503l-.392-.233-4.542 1.19 1.213-4.43-.256-.406A9.71 9.71 0 0 1 5.25 15c0-5.93 4.826-10.75 10.755-10.75S26.76 9.07 26.76 15 21.934 24.75 16.005 24.75z"></path><path d="M21.61 17.59c-.3-.15-1.77-.87-2.045-.97-.274-.1-.474-.15-.674.15-.2.3-.77.97-.944 1.17-.174.2-.35.224-.65.075-.3-.15-1.264-.466-2.408-1.485-.89-.793-1.49-1.774-1.664-2.074-.174-.3-.018-.462.13-.611.135-.134.3-.35.45-.524.15-.174.2-.3.3-.5.1-.2.05-.374-.025-.524-.075-.15-.674-1.62-.923-2.22-.244-.583-.492-.503-.674-.513-.174-.008-.374-.01-.574-.01-.2 0-.524.075-.798.374-.274.3-1.048 1.024-1.048 2.498s1.073 2.897 1.223 3.097c.15.2 2.11 3.22 5.115 4.517.714.309 1.271.494 1.706.632.717.228 1.37.196 1.885.119.575-.086 1.77-.723 2.02-1.422.25-.7.25-1.298.174-1.423-.075-.125-.274-.2-.574-.35z"></path></svg>' +
         '<span>' + waLabel + '</span>' +
-      '</button>' +
+      '</a>' +
       '<button class="btn-line" data-act="closeModal">Ahora no, lo hago luego</button>' +
     '</div>' +
     '<p class="wa-hint">Se abrirá WhatsApp con el mensaje ya escrito — solo tienes que pulsar enviar.</p>' +
@@ -867,8 +868,9 @@ function confirmReserve(){
   renderHighlights();
   celebrate();
 }
-function sendWhatsApp(){
-  window.open("https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(state.lastMsg), "_blank");
+function onWaSent(){
+  // El enlace <a href target="_blank"> ya ha abierto WhatsApp de forma nativa
+  // (más fiable en móvil que window.open, que Safari/iOS suele bloquear).
   state.modal = null;
   renderModal();
   toast("🌿 Gracias de verdad. Te contestamos con la dirección o el número de Bizum enseguida.");
@@ -1011,7 +1013,7 @@ function delegatedClick(e){
     case "card": state.card = +el.dataset.i; return renderModal();
     case "backToModo": return backToModo();
     case "confirm": return confirmReserve();
-    case "sendWhatsApp": return sendWhatsApp();
+    case "waSent": onWaSent(); return;
   }
 }
 
