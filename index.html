@@ -819,7 +819,7 @@ function confirmReserve(){
   var isGroup = state.shared && canShare(p);
   var nota = state.note.trim();
   var pc = POSTCARDS[state.card];
-  var postal = nota ? " Le dejo esta postal (" + pc.icon + " " + pc.name + "): «" + nota + "» — " + who : "";
+  var postal = nota ? "\n\n" + pc.icon + " " + nota : "";
   var extraList = PRODUCTS.filter(function(x){ return state.extras[x.id]; });
   var extraTxt = extraList.length
     ? " Y de la misma web (" + store(p) + ") cojo también: " + extraList.map(function(x){ return x.n + " (" + x.p + ")"; }).join(", ") + "."
